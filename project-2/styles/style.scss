@@ -4,7 +4,8 @@ $blue :rgb(36, 205, 213);
 $white :#FFFFFF;
 $black: #000000;
 $black2: #444444;
-$gradient : linear-gradient(90deg, rgb(10,88,202) 10%, rgb(36,205,213) 50%);
+$darkBlue: #26313C;
+$gradient : linear-gradient(90deg, rgb(10,88,202) 30%, rgb(36,205,213) 100%);
 
 body{
 
@@ -15,6 +16,42 @@ body{
 
     header{
         position: absolute;
+        width: 100%;
+        &.sticky{
+            position: fixed;
+            top:0;
+            z-index: 999999999;
+            width: 100%;
+            background-color: $white;
+            border-bottom: 1px solid #ddd;
+            color:$black;
+            .navbar{
+                width: 100%;
+            
+                .navbar-brand{
+                        color: $black;
+                }
+                .navbar-toggler{
+                    color:$white;
+                    .navbar-toggler-icon{
+                        color:$black;
+                    }
+                }
+                .navbar-collapse{
+                            .navbar-nav{
+                                .nav-item{
+                                    a{
+                                        color:$black;
+                                    }
+                                }
+                            }
+                            
+                        
+                     
+                    
+                }
+            }
+        }
         .navbar{
             width: 100%;
         
@@ -45,6 +82,8 @@ body{
     }
     .banner{
         background: url('../images/sea-3450584_1920.jpg');
+        background-position: center center;
+        background-attachment: fixed;
         height:560px ;
         display: flex;
         flex-direction: column;;
@@ -86,6 +125,200 @@ body{
             padding: 10px 30px;
             border-radius: 30px;
             width: max-content;
+        }
+    }
+
+    .section-two{
+
+        background-color: $darkBlue;
+        padding: 50px auto;
+        .section-title{
+            color:$white;
+            text-align: center;
+            margin-bottom: 90px;
+            margin-top:30px;
+        }
+
+        .process-list{
+            display: flex;
+            flex-direction: row;
+            color: $white;
+            position: relative;
+
+            .process-line{
+                position: absolute;
+                border: 1px solid $white;
+                top:39px;
+                left: 100px;
+                width:80%;
+                height: 1px;
+                margin: 0 auto;
+            }
+            .process-item{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                max-width: 200px;
+                
+                .process-num{
+                    border: 2px solid $white;
+                    background-color: $darkBlue;
+                    font-size: 26px;
+                    border-radius: 40px;
+                    width:80px;
+                    height: 80px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    margin-bottom: 30px;
+                    &:hover{
+                        background: $gradient;
+                    }
+                    
+                }
+                .process-title{
+                    margin-bottom: 30px;
+                }
+                .process-desc{
+                    margin: 20px;
+                    text-align: center;
+                }
+
+            }
+        }
+    }
+
+    .section-three{
+
+        .section-title{
+            margin-bottom: 80px;
+        }
+        img{
+            max-width: 100%;
+        }
+        .item{
+            .icon{
+                font-size: 30px;
+                color:$blue;
+                &.text-right{
+                    text-align: right;
+                }
+            }
+            .title{
+                color:$blue;
+                font-size: 22px;
+                font-weight: 300;
+                &.text-right{
+                    text-align: right;
+                }
+            }
+            .desc{
+                color:#555;
+                margin-top:20px;
+                margin-bottom: 30px;
+                &.text-right{
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    .section-four{
+        background-color:rgba(5,160,122,0.5);
+        background-image:url(../images/women-3051614_1920.jpg); 
+        
+        background-position:center center; 
+        background-attachment: fixed;
+        background-blend-mode:multiply;
+        height:400px;
+        padding-top: 100px;
+        .section-title{
+            color:$blue;
+        }
+
+        .counter-cont{
+            font-size: 40px;
+            text-align: center;
+            color:$white;
+            .counter{
+                color:$blue;
+            }
+        }
+    }
+
+    footer{
+        background-color: $darkBlue;
+        padding-top: 100px;
+        padding-bottom: 50px;
+        .logo-sec{
+            color:$white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .footer-intro{
+            margin-top:30px;
+            color:$white;
+        }
+        .contact-info{
+            display: flex;
+            flex-direction: row;
+            .img-phone{
+                font-size: 40px;
+                color:$white;
+                margin-right:12px;
+            }
+            .contact{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                a{
+                    color:$white;
+                    font-size: 14px;
+                    text-decoration: none;
+                    &:hover{
+                        color:$blue;
+                    }
+                }
+            }
+        }
+        
+        h3{
+            color:$white;
+            font-size: 22px;
+            font-weight: 400;
+        }
+        ul{
+            margin: 35px 0 0 0;
+            padding: 0;
+            list-style-type: none;
+            li{
+                margin: 0 0 10px 0;
+                padding: 0;
+                a{
+                    color:$white;
+                    text-decoration: none;
+                    &:hover{
+                        color:$blue;
+                    }
+                }
+            }
+        }
+        .social{
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            li{
+                padding: 0 20px 0 0;
+                a{
+                    color:$white;
+                    font-size: 30px;
+                    &:hover{
+                        color:$blue;
+                    }
+                }
+            }
         }
     }
 }
