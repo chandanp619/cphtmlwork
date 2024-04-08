@@ -301,6 +301,46 @@ body{
         }
     }
 
+    .section-six{
+        background-color: #eee;
+
+
+        .pricing-item{
+            background-color: $white;
+            border-radius: 5px;
+            padding: 30px 20px;
+            margin-top:50px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 9px 6px 20px 0px rgba(0, 0, 0, 0.75);
+
+            .title{
+                font-size: 22px;
+                font-weight: 300;
+                margin-bottom: 15px;
+            }
+            .sub-title{
+                font-size: 16px;
+                font-weight: normal;
+            }
+            .line{
+                border: 1px solid #ddd;
+                display: block;
+                width: 100%;
+                margin: 30px auto;
+            }
+            .price{
+                font-size: 40px;
+                span{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
     footer{
         background-color: $darkBlue;
         padding-top: 100px;

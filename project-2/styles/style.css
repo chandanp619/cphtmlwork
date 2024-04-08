@@ -241,6 +241,42 @@ body .section-five .experts .expert:hover .expert-info {
   background: linear-gradient(90deg, rgb(10, 88, 202) 30%, rgb(36, 205, 213) 100%);
   color: #FFFFFF;
 }
+body .section-six {
+  background-color: #eee;
+}
+body .section-six .pricing-item {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  padding: 30px 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 9px 6px 20px 0px rgba(0, 0, 0, 0.75);
+}
+body .section-six .pricing-item .title {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+body .section-six .pricing-item .sub-title {
+  font-size: 16px;
+  font-weight: normal;
+}
+body .section-six .pricing-item .line {
+  border: 1px solid #ddd;
+  display: block;
+  width: 100%;
+  margin: 30px auto;
+}
+body .section-six .pricing-item .price {
+  font-size: 40px;
+}
+body .section-six .pricing-item .price span {
+  font-size: 18px;
+}
 body footer {
   background-color: #26313C;
   padding-top: 100px;
