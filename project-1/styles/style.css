@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  font-family: "Barlow", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  color: #000;
+}
+body a {
+  color: #66f59d;
+}
+body a:hover {
+  color: #2b7548;
+}
+body .btn-theme {
+  background-color: #2b7548;
+  color: #fff !important;
+}
+body .btn-theme:hover {
+  background-color: #66f59d;
+  color: #000 !important;
+}
+body .section-title {
+  text-transform: uppercase;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+body header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /*background-color: rgba(255,255,255,0.5);*/
+  background: linear-gradient(180deg, rgba(53, 156, 84, 0.8) 60%, transparent 100%);
+}
+@media only screen and (max-width: 990px) {
+  body header nav {
+    background: linear-gradient(180deg, rgba(53, 156, 84, 0.8) 60%, transparent 100%);
+  }
+}
+body header nav .navbar-brand {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+}
+body header nav .navbar-collapse {
+  justify-content: space-between !important;
+}
+body header nav .navbar-collapse .navbar-nav .nav-link {
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+}
+body header nav .navbar-collapse .navbar-nav .nav-link:hover {
+  color: #66f59d;
+}
+body header nav .nav-right {
+  display: flex;
+  align-self: flex-end;
+}
+body header nav .nav-right a {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 40px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+}
+body .banner-section {
+  background-image: url("../images/banner-1.jpg");
+  background-size: cover;
+  height: 680px;
+  align-items: center;
+  justify-content: center;
+}
+body .banner-section img {
+  max-width: fit-content;
+}
+body .banner-section .banner-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+body .banner-section .banner-content .content-wrapper {
+  width: 60%;
+}
+body .banner-section .banner-content .content-wrapper .banner-title {
+  font-size: 50px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  margin-top: 150px;
+}
+body .banner-section .banner-content .content-wrapper .banner-desc {
+  font-size: 22px;
+  font-weight: 400;
+  color: #000;
+}
+body .banner-section .banner-content .content-wrapper .banner-button {
+  width: max-content;
+  padding: 10px 30px;
+}
+@media only screen and (max-width: 768px) {
+  body .banner-section .banner-content .content-wrapper {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 580px) {
+  body .banner-section .banner-content .content-wrapper .banner-title {
+    font-size: 36px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    margin-top: 100px;
+  }
+}
+body .articles-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+body .articles-section .articles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+body .articles-section .articles .article {
+  margin: 20px 10px;
+  flex: 1 0 30%;
+}
+body .articles-section .articles .article .article-title {
+  font-size: 22px;
+  margin-top: 10px;
+}
+body .articles-section .articles .article .article-excerpt {
+  font-size: 18px;
+}
+body .articles-section .articles .article .article-image {
+  max-width: 100%;
+}
+body .articles-section .articles .article .article-link {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #000;
+  text-transform: uppercase;
+}
+body .articles-section .articles .article .article-link:hover {
+  color: #2b7548;
+}
+@media only screen and (max-width: 980px) {
+  body .articles-section .articles .article {
+    margin: 20px 10px;
+    flex: 1 0 47%;
+  }
+  body .articles-section .articles .article .article-title {
+    font-size: 22px;
+    margin-top: 10px;
+  }
+  body .articles-section .articles .article .article-excerpt {
+    font-size: 18px;
+  }
+  body .articles-section .articles .article .article-image {
+    max-width: 100%;
+  }
+  body .articles-section .articles .article .article-link {
+    margin-top: 30px;
+    color: #000;
+    text-transform: uppercase;
+  }
+}
+body .marker-section {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  background-color: #ddd;
+}
+body .marker-section .marker-image img {
+  max-width: 100%;
+}
+body .marker-section .marker-text {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .marker-section .marker-text .section-title {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+body .marker-section .marker-text .marker-items {
+  width: 80%;
+  margin: 0 auto;
+}
+body .marker-section .marker-text .marker-items .marker-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 0;
+}
+body .marker-section .marker-text .marker-items .marker-item .labels {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+body .marker-section .marker-text .marker-items .marker-item .labels span {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+@keyframes slide-from-left {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+body .marker-section .marker-text .marker-items .marker-item .bar {
+  background-color: #fff;
+  width: 100%;
+  height: 5px;
+}
+body .marker-section .marker-text .marker-items .marker-item .bar .bar-dark-bg {
+  animation: auto linear slide-from-left both;
+  animation-timeline: view();
+  animation-range: entry 25% cover 50%;
+  background-color: #000;
+  width: 0%;
+  height: 5px;
+}
+@media only screen and (max-width: 980px) {
+  body .marker-section .marker-image {
+    padding: 0;
+  }
+  body .marker-section .marker-image img {
+    max-width: 100%;
+    padding: 0;
+  }
+  body .marker-section .marker-text {
+    margin: 0;
+    padding: 40px;
+  }
+}
+body .make-it-right {
+  padding-bottom: 80px;
+}
+body .make-it-right .section-title {
+  text-align: center;
+  margin: 50px auto;
+}
+body .make-it-right .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .make-it-right .item .item-image {
+  border-radius: 200px;
+  width: 200px;
+  height: 200px;
+}
+body .make-it-right .item .item-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 22px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+body .video-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+body .video-section video {
+  max-width: 100%;
+}
+body .partners-section {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+body .partners-section .partners {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+body .partners-section .partners li {
+  list-style-type: none;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+body .partners-section .partners li img {
+  max-width: 80px;
+  filter: grayscale(100%);
+}
+body .partners-section .partners li img:hover {
+  filter: grayscale(0%);
+}
+body .single-article-section img {
+  max-width: 100%;
+}
+body .single-article-section .article-title {
+  text-align: left;
+  font-size: 32px;
+  margin: 28px 0 20px 0;
+}
+body .single-article-section .article-meta {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 400;
+}
+body .single-article-section .article-content {
+  margin-bottom: 50px;
+}
+body footer {
+  border-top: 2px solid #ddd;
+  padding-top: 80px;
+}
+body footer .logo {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+body footer .col-heading {
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+}
+body footer p {
+  color: #666;
+  font-weight: 400;
+}
+body footer .social {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+body footer .social li {
+  margin: 10px;
+}
+body footer ul {
+  margin: 20px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+body footer ul li {
+  margin-bottom: 15px;
+}
+body footer ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+}
+body .single-page {
+  margin-top: 80px;
+  margin-bottom: 100px;
+}
+
+/*# sourceMappingURL=style.css.map */
