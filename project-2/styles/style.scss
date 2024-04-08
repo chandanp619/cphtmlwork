@@ -247,6 +247,60 @@ body{
         }
     }
 
+    .section-five{
+
+        .section-title{
+            margin-bottom:50px ;
+        }
+        .experts{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            .expert{
+                width:250px;
+                margin: 20px auto;
+                .expert-image{
+                    overflow: hidden;
+                    img{
+                        max-width: 100%;
+                        width: 400px;
+                    }
+                }
+                .expert-info{
+                    display: flex;
+                    padding: 30px 10px;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .name{
+                        font-size: 20px;
+                    }
+                    .designation{
+                        font-size: 14px;
+                    }
+                }
+
+                &:hover{
+                    .expert-image{
+                        img{
+                            transform: scale(1.5);
+                            transition: transform .5s ease;
+                        }
+                    }
+                    .expert-info{
+                        background: $gradient;
+                        color:$white;
+                    }
+                }
+            }
+        }
+    }
+
     footer{
         background-color: $darkBlue;
         padding-top: 100px;
