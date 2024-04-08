@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+$blue :rgb(36, 205, 213);
+$white :#FFFFFF;
+$black: #000000;
+$black2: #444444;
+$gradient : linear-gradient(90deg, rgb(10,88,202) 10%, rgb(36,205,213) 50%);
+
+body{
+
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+
+    header{
+        position: absolute;
+        .navbar{
+            width: 100%;
+        
+            .navbar-brand{
+                    color: $white;
+            }
+            .navbar-toggler{
+                color:$white;
+                .navbar-toggler-icon{
+                    color:$white;
+                }
+            }
+            .navbar-collapse{
+                        border: 1px solid  $white;
+                        
+                        .navbar-nav{
+                            .nav-item{
+                                a{
+                                    color:$white;
+                                }
+                            }
+                        }
+                        
+                    
+                 
+                
+            }
+        }
+        
+    }
+    .banner{
+        background: url('../images/sea-3450584_1920.jpg');
+        height:560px ;
+        display: flex;
+        flex-direction: column;;
+        justify-content: center;
+        align-items: center;
+        h2{
+            color:#fff;
+            text-align: center;
+            font-size: 50px;
+            font-weight: 200;
+        }
+        p{
+            color:#fff;
+            text-align: center;
+            font-size: 26px;
+            font-weight: 200;
+            margin-top: 30px;
+        }
+    }
+
+    section{
+        padding: 50px;
+        .section-title{
+            color:$black;
+            font-size: 40px;
+            span{
+                color:$blue;
+            }
+        }
+        .section-content{
+            margin-top:20px;
+            color:$black2;
+            line-height: 1.5;
+        }
+
+        .btn-theme{
+            background: $gradient;
+            color:$white;
+            padding: 10px 30px;
+            border-radius: 30px;
+            width: max-content;
+        }
+    }
+}
