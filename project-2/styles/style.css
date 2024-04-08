@@ -20,9 +20,6 @@ body header .navbar .navbar-toggler {
 body header .navbar .navbar-toggler .navbar-toggler-icon {
   color: #FFFFFF;
 }
-body header .navbar .navbar-collapse {
-  border: 1px solid #FFFFFF;
-}
 body header .navbar .navbar-collapse .navbar-nav .nav-item a {
   color: #FFFFFF;
 }
