@@ -150,7 +150,7 @@ body .section-two .process-list .process-item .process-desc {
   margin: 20px;
   text-align: center;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   body .section-two .process-list {
     flex-direction: column;
   }
