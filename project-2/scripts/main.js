@@ -15,12 +15,14 @@ jQuery(function(){
     },{offset:'10%'});
 
 
-    jQuery('.section-four').waypoint(function(direction){
-        jQuery('.counter').counterUp({
-            delay: 10,
-            time: 1000
-        });
-    }, {offset: '20%'})
+    // jQuery('.section-four').waypoint(function(direction){
+      
+    // }, {offset: '20%'})
+
+    jQuery('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
 
     jQuery('.reviews').owlCarousel({
         loop:true,
