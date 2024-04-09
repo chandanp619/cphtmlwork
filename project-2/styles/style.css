@@ -93,6 +93,9 @@ body section .btn-theme {
   border-radius: 30px;
   width: max-content;
 }
+body .section-one img {
+  max-width: 100%;
+}
 body .section-two {
   background-color: #26313C;
   padding: 50px auto;
@@ -147,11 +150,42 @@ body .section-two .process-list .process-item .process-desc {
   margin: 20px;
   text-align: center;
 }
+@media only screen and (max-width: 768px) {
+  body .section-two .process-list {
+    flex-direction: column;
+  }
+  body .section-two .process-list .process-line {
+    position: absolute;
+    border: 1px solid #FFFFFF;
+    top: 50px;
+    left: 0;
+    width: 1px;
+    height: 80%;
+    margin: 0 auto;
+  }
+  body .section-two .process-list .process-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 114%;
+    min-height: 200px;
+    margin-left: 42px;
+    /*border: 1px solid #ff0;*/
+  }
+  body .section-two .process-list .process-item .process-num {
+    position: absolute;
+    left: -40px;
+  }
+  body .section-two .process-list .process-item .process-title {
+    margin-bottom: 10px;
+  }
+}
 body .section-three .section-title {
   margin-bottom: 80px;
 }
 body .section-three img {
   max-width: 100%;
+  width: 100%;
 }
 body .section-three .item .icon {
   font-size: 30px;
