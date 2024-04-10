@@ -1,0 +1,198 @@
+$black: #000;
+$white: #fff;
+$green1: #77C729;
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+body{
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 1.9%;
+    color:$black;
+    .bg-black{
+        background-color: $black;
+        color:$white;
+    }
+    .bg-white{
+        background-color: $white;
+        color:$black;
+    }
+    .bg-gray{
+        background-color: #ddd;
+    }
+
+    header{
+
+        .navbar-nav{
+                .nav-link{
+                    text-transform:uppercase;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            
+        }
+    }
+    .banner{
+        background-image: url('../images/houzez-header-1.jpg');
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        background-color: #888;
+        background-blend-mode: multiply;
+        height: 600px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .banner-title{
+                font-size: 50px;
+                color:$white;
+                margin-bottom: 20px;
+            }
+            .banner-desc{
+                color:$white;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+            }
+            .search-property{
+                
+                padding: 5px;
+                .tab-buttons{
+                    margin: 0 0 5px 0;
+                    padding: 0;
+                    display: flex;
+                    flex-direction: row;
+                    list-style-type: none;
+                    justify-content: center;
+                    align-items: center;
+                    
+                    li{
+                        a{
+                            padding: 10px 20px;
+                            text-decoration: none;
+                            background-color:$green1 ;
+                            color:$white;
+                            margin-right:2px;
+                            border-radius: 3px;
+                            z-index: 99;
+                        }
+                        &:first-child{
+                            a{
+                                background-color: $white;
+                                color:$black;
+                            }
+                        }
+                    }
+                }
+                .form-container{
+                    background-color: $white;
+                    border-radius: 3px;
+                    width:800px;
+                    padding: 10px;
+                    z-index: 999;
+                    select{
+                        width:18%;
+                        padding: 10px;
+                        border: 1px solid #ddd;
+                        background-color: transparent;
+                    }
+                    input{
+                        &[type="text"]{
+                            width:60%;
+                            border: 1px solid #ddd;
+                            padding: 10px;
+                        }
+                    }
+                    button{
+                        width:20%;
+                        background-color:$green1 ;
+                        color:$white;
+                        border: none;
+                        padding: 10px;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+
+    .section-one{
+        .section-title{
+            margin-top:50px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 40px;
+        }
+        .section-desc{
+            text-align: center;
+            line-height: 1.5;
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .property{
+            background-color: $white;
+            box-shadow: 10px 6px 16px 0px rgb(0 0 0 / 50%);
+            .image-container{
+                
+                img{
+                    max-width: 100%;
+                }
+            }
+            .info-container{
+                margin-top:20px;
+                .property-title{
+                    width: 100%;
+                    a{
+                        color:$black;
+                        font-size: 24px;
+                        text-decoration: none;
+                        text-align: center;
+                        display: block;
+                        &:hover{
+                            color:$green1;
+                        }
+                    }
+                }
+                .property-price{
+                    font-size: 20px;
+                    text-align: center;
+                    display: block;
+                    margin: 10px auto;
+                }
+                .property-type{
+                    text-align: center;
+                    display: block;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                }
+                
+            }
+            .property-stat{
+            margin-bottom:20px;
+            padding-bottom: 20px;
+                ul{
+                    width: 80%;
+                    margin-top:20px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding: 0;
+                    list-style-type: none;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+
+    footer{
+
+    }
+}

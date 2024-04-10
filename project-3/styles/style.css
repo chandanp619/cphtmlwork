@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap");
+body {
+  font-family: "Dosis", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: 1.9%;
+  color: #000;
+}
+body .bg-black {
+  background-color: #000;
+  color: #fff;
+}
+body .bg-white {
+  background-color: #fff;
+  color: #000;
+}
+body .bg-gray {
+  background-color: #ddd;
+}
+body header .navbar-nav .nav-link {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+}
+body .banner {
+  background-image: url("../images/houzez-header-1.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-color: #888;
+  background-blend-mode: multiply;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body .banner .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .banner .content .banner-title {
+  font-size: 50px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+body .banner .content .banner-desc {
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+body .banner .content .search-property {
+  padding: 5px;
+}
+body .banner .content .search-property .tab-buttons {
+  margin: 0 0 5px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+}
+body .banner .content .search-property .tab-buttons li a {
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: #77C729;
+  color: #fff;
+  margin-right: 2px;
+  border-radius: 3px;
+  z-index: 99;
+}
+body .banner .content .search-property .tab-buttons li:first-child a {
+  background-color: #fff;
+  color: #000;
+}
+body .banner .content .search-property .form-container {
+  background-color: #fff;
+  border-radius: 3px;
+  width: 800px;
+  padding: 10px;
+  z-index: 999;
+}
+body .banner .content .search-property .form-container select {
+  width: 18%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: transparent;
+}
+body .banner .content .search-property .form-container input[type=text] {
+  width: 60%;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+body .banner .content .search-property .form-container button {
+  width: 20%;
+  background-color: #77C729;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-weight: 400;
+}
+body .section-one .section-title {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 40px;
+}
+body .section-one .section-desc {
+  text-align: center;
+  line-height: 1.5;
+  width: 400px;
+  margin: 0 auto;
+}
+body .section-one .property {
+  background-color: #fff;
+  box-shadow: 10px 6px 16px 0px rgba(0, 0, 0, 0.5);
+}
+body .section-one .property .image-container img {
+  max-width: 100%;
+}
+body .section-one .property .info-container {
+  margin-top: 20px;
+}
+body .section-one .property .info-container .property-title {
+  width: 100%;
+}
+body .section-one .property .info-container .property-title a {
+  color: #000;
+  font-size: 24px;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+}
+body .section-one .property .info-container .property-title a:hover {
+  color: #77C729;
+}
+body .section-one .property .info-container .property-price {
+  font-size: 20px;
+  text-align: center;
+  display: block;
+  margin: 10px auto;
+}
+body .section-one .property .info-container .property-type {
+  text-align: center;
+  display: block;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+body .section-one .property .property-stat {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+body .section-one .property .property-stat ul {
+  width: 80%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=style.css.map */
