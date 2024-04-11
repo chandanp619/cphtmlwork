@@ -20,4 +20,14 @@ jQuery( function(){
         console.log('applying...');
         },{offset:'10%'});
     
+        jQuery('.slick').slick({
+            autoplay:true,
+            responsive: true,
+            fade: true,
+            dots:false,
+            speed:200,
+            pauseOnHover:false,
+            adaptiveHeight: true,
+            arrows: false
+        });
 })
