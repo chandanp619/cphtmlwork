@@ -41,6 +41,9 @@ body{
     .bg-gray{
         background-color: #ddd;
     }
+    .bg-gray-2{
+        background-color: #eee;
+    }
 
     .btn-theme{
         @include btn;

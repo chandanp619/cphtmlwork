@@ -18,6 +18,9 @@ body .bg-white {
 body .bg-gray {
   background-color: #ddd;
 }
+body .bg-gray-2 {
+  background-color: #eee;
+}
 body .btn-theme {
   background-color: #77C729;
   color: #fff;
