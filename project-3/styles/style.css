@@ -18,6 +18,19 @@ body .bg-white {
 body .bg-gray {
   background-color: #ddd;
 }
+body .btn-theme {
+  background-color: #77C729;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-weight: 400;
+  transition-duration: 1s;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+body .btn-theme:hover {
+  background-color: #08aa08;
+}
 body header .navbar-nav .nav-link {
   text-transform: uppercase;
   font-weight: 600;
@@ -65,15 +78,22 @@ body .banner .content .search-property .tab-buttons {
   align-items: center;
 }
 body .banner .content .search-property .tab-buttons li a {
-  padding: 10px 20px;
+  color: #77C729;
   text-decoration: none;
+  padding: 10px 20px;
   background-color: #77C729;
-  color: #fff;
   margin-right: 2px;
   border-radius: 3px;
   z-index: 99;
+  color: #fff;
 }
-body .banner .content .search-property .tab-buttons li:first-child a {
+body .banner .content .search-property .tab-buttons li a:hover {
+  color: #08aa08;
+}
+body .banner .content .search-property .tab-buttons li a:hover {
+  color: #000;
+}
+body .banner .content .search-property .tab-buttons li.active a {
   background-color: #fff;
   color: #000;
 }
@@ -96,12 +116,16 @@ body .banner .content .search-property .form-container input[type=text] {
   padding: 10px;
 }
 body .banner .content .search-property .form-container button {
-  width: 20%;
   background-color: #77C729;
   color: #fff;
   border: none;
   padding: 10px;
   font-weight: 400;
+  transition-duration: 1s;
+  width: 20%;
+}
+body .banner .content .search-property .form-container button:hover {
+  background-color: #08aa08;
 }
 body .section-one .section-title {
   margin-top: 50px;
@@ -164,6 +188,112 @@ body .section-one .property .property-stat ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+body .section-two {
+  margin: 50px 0;
+}
+body .section-two .section-title {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 40px;
+}
+body .section-two .section-desc {
+  text-align: center;
+  line-height: 1.5;
+  width: 400px;
+  margin: 0 auto;
+}
+body .section-two .grid {
+  margin-top: 50px;
+}
+body .section-two .grid .grid-item {
+  position: relative;
+  width: 48%;
+  margin: 10px;
+}
+body .section-two .grid .grid-item .grid-item--width2 {
+  width: 100% !important;
+}
+body .section-two .grid .grid-item img {
+  max-width: 100%;
+}
+body .section-two .grid .grid-item .info {
+  position: absolute;
+  padding: 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgb(240, 240, 240) 1%, transparent 50%, transparent 100%);
+  background-blend-mode: multiply;
+}
+body .section-two .grid .grid-item .info a {
+  text-decoration: none;
+  color: #000;
+}
+body .section-two .grid .grid-item .info a .meta {
+  font-size: 16px;
+}
+body .section-two .grid .grid-item .info a .title {
+  font-size: 22px;
+  color: #77C729;
+}
+body .section-two .grid .grid-item:hover .info {
+  background: none;
+  background-blend-mode: normal;
+}
+body .section-three {
+  padding: 50px 0;
+  background-color: #eee;
+}
+body .section-three .section-title {
+  margin-bottom: 30px;
+  font-size: 40px;
+}
+body .section-three .section-desc {
+  margin: 20px 0 80px;
+}
+body .section-three .agent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transition-duration: 1s;
+}
+body .section-three .agent .agent-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 300px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+body .section-three .agent .agent-image img {
+  max-width: 100%;
+}
+body .section-three .agent .agent-info .name {
+  color: #77C729;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+body .section-three .agent .agent-info .designation {
+  color: #000;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+body .section-three .agent .agent-info .intro {
+  margin: 20px 0;
+}
+body .section-three .agent .agent-info .button {
+  text-align: center;
+}
+body .section-three .agent:hover {
+  box-shadow: 0px 0px 20px 0px #888888;
+  background-color: #fff;
 }
 
 /*# sourceMappingURL=style.css.map */

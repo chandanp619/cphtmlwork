@@ -1,6 +1,26 @@
 $black: #000;
 $white: #fff;
 $green1: #77C729;
+$green2: #08aa08;
+
+@mixin btn{
+        background-color: $green1;
+        color:$white;
+        border: none;
+        padding: 10px;
+        font-weight: 400;
+        transition-duration: 1s;
+        &:hover{
+            background-color: $green2;
+        }
+}
+@mixin anchor{
+    color:$green1;
+    text-decoration: none;
+    &:hover{
+        color: $green2;
+    }
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
 body{
@@ -20,6 +40,12 @@ body{
     }
     .bg-gray{
         background-color: #ddd;
+    }
+
+    .btn-theme{
+        @include btn;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     header{
@@ -74,15 +100,18 @@ body{
                     
                     li{
                         a{
+                            @include anchor;
                             padding: 10px 20px;
-                            text-decoration: none;
                             background-color:$green1 ;
-                            color:$white;
                             margin-right:2px;
                             border-radius: 3px;
                             z-index: 99;
+                            color:$white;
+                            &:hover{
+                                color:$black;
+                            }
                         }
-                        &:first-child{
+                        &.active{
                             a{
                                 background-color: $white;
                                 color:$black;
@@ -110,12 +139,8 @@ body{
                         }
                     }
                     button{
-                        width:20%;
-                        background-color:$green1 ;
-                        color:$white;
-                        border: none;
-                        padding: 10px;
-                        font-weight: 400;
+                        @include btn;
+                        width: 20%;
                     }
                 }
             }
@@ -188,6 +213,126 @@ body{
                     flex-direction: row;
                     justify-content: space-between;
                 }
+            }
+        }
+    }
+
+    .section-two{
+        margin: 50px 0;
+        .section-title{
+            margin-top:50px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 40px;
+        }
+        .section-desc{
+            text-align: center;
+            line-height: 1.5;
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .grid{
+            margin-top:50px;
+            .grid-item{
+                position: relative;
+                width: 48%;
+                margin: 10px;
+                
+                .grid-item--width2{
+                    width: 100% !important;
+                }
+                img{
+                    max-width: 100%;
+                }
+                .info{
+                    position: absolute;
+                    padding: 20px;
+                    top:0;
+                    left:0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(180deg, rgb(240,240,240) 1%,transparent 50%, transparent 100%);
+                    background-blend-mode: multiply;
+                    a{
+                        text-decoration: none;
+                        color:$black;
+                        .meta{
+                            font-size: 16px;
+                        }
+                        .title{
+                            font-size: 22px;
+                            color:$green1;
+                        }
+                    }
+                    
+                }
+                &:hover{
+                    .info{
+                        background: none;
+                        background-blend-mode: normal;
+                    }
+                }   
+            }
+        }
+    }
+
+    .section-three{
+        padding: 50px 0;
+        background-color: #eee;
+
+        .section-title{
+            margin-bottom: 30px;
+            font-size: 40px;
+        }
+        .section-desc{
+            margin: 20px 0 80px;
+            
+        }
+
+        .agent{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition-duration:  1s;
+            .agent-image{
+                width: 200px;
+                height: 200px;
+                border-radius: 300px;
+                margin-bottom: 30px;
+                overflow: hidden;
+                img{
+                    max-width: 100%;
+                }
+            }
+            .agent-info{
+                .name{
+                    color:$green1;
+                    font-size: 20px;
+                    text-align: center;
+                    margin-bottom: 10px;
+                    font-weight: 600;
+                }
+                .designation{
+                    color: $black;
+                    font-size: 18px;
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+                .intro{
+                    margin: 20px 0;
+                }
+                .button{
+                    text-align: center;
+                }
+            }
+
+            &:hover{
+                
+                box-shadow: 0px 0px 20px 0px #888888;
+                background-color: $white;
             }
         }
     }
