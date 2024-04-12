@@ -487,6 +487,20 @@ body .sidebar .box ul li a span {
   flex: 1;
   text-align: right;
 }
+body .sidebar .box .noUi-horizontal {
+  height: 8px;
+}
+body .sidebar .box .noUi-connect {
+  background: #77C729;
+  height: 8px;
+}
+body .sidebar .box .noUi-handle-lower, body .sidebar .box .noUi-handle-upper {
+  width: 15px;
+  height: 15px;
+  background-color: #000;
+  border: none;
+  border-radius: 20px;
+}
 body .sidebar .box .price-range-value {
   display: inline-block;
   margin-top: 10px;

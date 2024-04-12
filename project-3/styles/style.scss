@@ -560,7 +560,21 @@ body{
                         
                     }
                 }
-               
+
+                .noUi-horizontal{
+                    height: 8px;
+                }
+                .noUi-connect{
+                    background: $green1;
+                    height: 8px;
+                }
+                .noUi-handle-lower, .noUi-handle-upper{
+                    width: 15px;
+                    height: 15px;
+                    background-color: $black;
+                    border: none;
+                    border-radius: 20px;
+                }
                 .price-range-value{
                     display: inline-block;
                     margin-top: 10px;
