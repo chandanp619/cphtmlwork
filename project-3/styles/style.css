@@ -500,6 +500,13 @@ body .sidebar .box .noUi-handle-lower, body .sidebar .box .noUi-handle-upper {
   background-color: #000;
   border: none;
   border-radius: 20px;
+  box-shadow: none;
+}
+body .sidebar .box .noUi-handle-lower:before, body .sidebar .box .noUi-handle-upper:before {
+  display: none;
+}
+body .sidebar .box .noUi-handle-lower:after, body .sidebar .box .noUi-handle-upper:after {
+  display: none;
 }
 body .sidebar .box .price-range-value {
   display: inline-block;

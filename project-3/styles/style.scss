@@ -574,6 +574,13 @@ body{
                     background-color: $black;
                     border: none;
                     border-radius: 20px;
+                    box-shadow: none;
+                    &:before{
+                        display:none;
+                    }
+                    &:after{
+                        display:none;
+                    }
                 }
                 .price-range-value{
                     display: inline-block;
