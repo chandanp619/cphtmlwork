@@ -30,6 +30,14 @@ body{
     font-style: normal;
     letter-spacing: 1.9%;
     color:$black;
+
+    a{
+        color: $black;
+        text-decoration: none;
+        &:hover{
+            color:$green1;
+        }
+    }
     .bg-black{
         background-color: $black;
         color:$white;
@@ -53,6 +61,11 @@ body{
 
     header{
 
+        &.sticky{
+            position: fixed;
+            width: 100%;
+            z-index: 99999999;
+        }
         .navbar-nav{
                 .nav-link{
                     text-transform:uppercase;
@@ -498,6 +511,63 @@ body{
             }
         }
     }
+
+
+    .inner-banner{
+        background-position: center center;
+        background-attachment: fixed;
+        background-image:url('../images/dining-area-8403094_1920.jpg'); 
+        height: 300px;
+    }
+
+    
+        .sidebar{
+            .box{
+                background-color: $white;
+                padding: 20px;
+                margin-bottom: 30px;
+                .box-title{
+                    font-size: 22px;
+                    color:$green1;
+                    margin-bottom: 20px;
+                }
+                ul{
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    li{
+                        display: flex;
+                        flex-direction: row;
+                        
+                        margin-bottom: 10px;
+                        &:before{
+                            content:"\f054";
+                            font-family:"fontawesome";
+                            font-size: 14px;
+                            color: $green2;
+                            margin-right: 5px;
+        
+                        }
+                        a{
+                            display: flex;
+                            flex-direction: row;
+                            width: 100%;
+                            span{
+                                flex: 1;
+                                text-align: right;
+                            }
+                        }
+                        
+                    }
+                }
+               
+                .price-range-value{
+                    display: inline-block;
+                    margin-top: 10px;
+                }
+            }
+        }
+    
 
     footer{
         background-color: $black;
