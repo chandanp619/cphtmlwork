@@ -1,0 +1,338 @@
+$black: #091D21;
+$red:   #E54029;
+$white: #FFFFFF;
+$white2: #ededed;
+$gray:  #ababab;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nanum+Gothic&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: $black;
+    color:$white;
+    font-family: "Nanum Gothic", sans-serif;
+    a{
+        color:$white;
+        text-decoration: none;
+        &:hover{
+            color: $red;
+        }
+    }
+
+    h1,h2,h3,h4,h5{
+        font-family: "DM Sans", sans-serif;
+        letter-spacing: 3px;
+    }
+
+    @keyframes btnHover {
+        0%{
+            background: linear-gradient(90deg,  $red 0% , $white 100% );
+            
+        }
+        
+        100%{
+            background: linear-gradient(90deg,  $red 100%, $white 100%  );;
+            
+        }
+    }
+    @keyframes hideHeaderTop {
+        from {
+            height:50px;
+        }
+        to {
+            height: 0px;
+            display: none;
+        }
+
+    }
+    @keyframes showHeaderTop {
+        from {
+            height:0px;
+        }
+        to {
+            height: 50px;
+            display: block;
+        }
+
+    }
+
+
+    .btn-theme{
+        padding: 10px 20px;
+        color:$black;
+        background: linear-gradient(90deg, $white 100% , $red 50% );
+        margin: 10px 20px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        border: none;
+        &:hover{
+            color:$white;
+            animation-name: btnHover;
+            animation-duration: 200ms;
+            background: linear-gradient(90deg, $red 100% , $white 0% );
+        
+        }
+    }
+
+        header{
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            width: 100%;
+            z-index: 99999999;
+
+            &.fixed{
+                background-color: $black;
+                z-index: 9999999;
+                .header-top{
+                    overflow: hidden;
+                    animation-name: hideHeaderTop;
+                    animation-duration: 1s;
+                    animation-fill-mode:forwards;
+                }
+            }
+            .fa-solid{
+                color:$red;
+                display: inline-block;
+                margin-right: 10px;
+            }
+            .header-top{
+                overflow: hidden;
+                animation: showHeaderTop 200ms forwards;
+                border-bottom: 1px solid $gray;
+                .container{
+                    .row{
+                        .col{
+                            flex-direction: row;
+                            @media only screen and (max-width:768px){
+                                
+                                flex-direction: column;
+                            }
+
+                            .left{
+                                display: flex;
+                                flex-direction: row;
+                                width: 50%;
+                                justify-content: flex-start;
+                                padding: 5px;
+                                @media only screen and (max-width:768px){
+                                    justify-content: center;
+                                    width: 100%;
+                                }
+                                .mail{
+                                    font-weight: 700;
+                                    width:max-content;
+                                    margin-right: 20px;
+                                }
+                                .addr{
+                                    font-weight: 700;
+                                    width: max-content;
+                                    margin-right: 20px;
+                                }
+                            }
+                            .right{
+                                display: flex;
+                                flex-direction: row;
+                                width: 40%;
+                                justify-content: flex-end;
+                                padding: 5px;
+                                @media only screen and (max-width:768px){
+                                    justify-content: center;
+                                    width: 100%;
+                                }
+                                .social{
+                                    a{
+                                        margin-right: 10px;
+                                        &:hover{
+                                            color:$gray;
+                                        }
+                                    }
+            
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+            .header-bottom{
+                .navbar{
+                     justify-content: space-between;
+                    &.navbar-expand-lg{
+                        
+                            .navbar-brand{
+                                color: $white;
+                                font-size: 28px;
+                            } .navbar-toggler{
+                                color: $white;
+                            }
+                            .navbar-toggler-icon{
+                                background-image: url("../images/toggle-bg.svg");
+                            }
+
+                    
+                        
+                            .nav-link{
+                                color: $white;
+                                &:hover{
+                                    color: $red;
+                                }
+                            }
+                        
+                    }
+                }
+                
+                
+                
+               
+            }
+        }
+        .home-banner{
+            background-color: $black;
+            background-image: url(../images/dashboard-3510327_1920.jpg);
+            background-blend-mode: multiply;
+            background-size: cover;
+            
+            .container{
+                .row{
+                    .col{
+                        height: 600px;
+                        position: relative;
+                        h2{
+                            font-size: 42px;
+                            line-height: 1.5;
+                        }
+                        .banner-image{
+                            position: absolute;
+                            z-index: 99;
+                            bottom: -80px;
+                            width: 50%;
+                            margin: 0 auto ;
+                            
+                        }
+                        @media only screen and (max-width:1024px){
+                            .banner-image{
+                                bottom: -60px;
+                                width: 80%;
+                            } 
+                        }
+                        @media only screen and (max-width:425px){
+                            .banner-image{
+                                bottom: -40px;
+                                width: 80%;
+                            } 
+                        }
+                    }
+                }
+            }
+        }
+        .home-features{
+            padding-top: 200px;
+            padding-bottom: 100px;
+            background-color: $white2;
+            h2{
+                color:#000;
+                margin-bottom: 50px;
+            }
+
+            .items{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                .item{
+                    width: 23%;
+                    color:$black;
+                    background-color: $white;
+                    border-top: 3px solid $white;
+                    margin:10px;
+                    padding: 20px 15px;
+                    display: flex;
+                    flex-direction: column;
+                    @media only screen and (max-width:1024px){
+                        width: 46%;
+                    }
+                    @media only screen and (max-width:768px){
+                        width: 100%;
+                    }
+                    &:hover{
+                        border-top: 3px solid $red;
+                        box-shadow: 20px 10px 30px -10px #aaa;
+                    }
+                    a{
+                        color:$red;
+                        font-weight: 700;
+                        &:hover{
+                            color:$black;
+                        }
+                    }
+                    .fa-solid{
+                        font-size: 45px;
+                        color: $red;
+                        margin-bottom: 20px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        display: inline-block;
+                    }
+                    h3{
+                        font-size: 22px;
+                        letter-spacing: normal;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+
+        footer{
+            padding: 50px 0 20px;
+            .footer-top{
+                h2{
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                }
+                .service-links{
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    a{
+                        margin: 0 0 20px;
+                        width: 50%;
+                    }
+                }
+            }
+            .footer-bottom{
+                   padding: 20px 0 0;
+
+                   .footer-logo{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                   }
+                   .footer-pt{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                   }
+                @media only screen and (max-width:768px){
+                    text-align: center;
+                    .footer-logo{
+                        
+                        justify-content: center;
+                        margin-bottom: 10px;
+                       }
+                       .footer-pt{
+                        
+                        justify-content: center;
+                        margin-bottom: 10px;
+                       }
+                }   
+
+            }
+            
+        }
+}

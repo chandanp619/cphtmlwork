@@ -46,7 +46,7 @@ jQuery( function(){
 
         var pslider = jQuery('#price-slider')[0];
         noUiSlider.create(pslider, {
-            start: [20000, 80000],
+            start: [20000, 11000000],
             connect: true,
             step: 10000,
             range: {

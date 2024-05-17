@@ -1,0 +1,22 @@
+{
+    "property_title":"",
+    "property_description":"",
+    "property_city": "",
+    "property_type": "",
+    "property_listed_for":"",
+    "property_features":{
+        "area":"",
+        "rooms":"",
+        "bathrooms":"",
+        "parking":""
+    },
+    "property_contact":{
+        "name":"",
+        "email":"",
+        "phone":""
+    },
+    "property_price":"",
+    "property_listed_on":"",
+    "property_status":""
+    
+}

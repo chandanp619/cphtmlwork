@@ -186,6 +186,19 @@ body .section-one .property {
   background-color: #fff;
   box-shadow: 10px 6px 16px 0px rgba(0, 0, 0, 0.5);
 }
+body .section-one .property .image-container {
+  position: relative;
+}
+body .section-one .property .image-container .featured {
+  position: absolute;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #77C729;
+  left: 7px;
+  top: 7px;
+  border-radius: 2px;
+}
 body .section-one .property .image-container img {
   max-width: 100%;
 }
