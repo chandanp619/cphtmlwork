@@ -6,6 +6,8 @@
     <title>Document</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css' integrity='sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==' crossorigin='anonymous'/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/owl/assets/owl.carousel.min.css" />
+    
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
@@ -132,6 +134,88 @@
             </div>
         </div>
     </section>
+    <section class="home-client-testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-title">Client Testimonials</h2>
+
+                    <div class="slider owl-carousel">
+                        <div class="item">
+                            <img src="assets/images/clutch-2755548_1920.jpg" alt="" class="bg-slide" />
+                            <div class="info">
+                                <div class="testimonial">Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia.</div>
+                                <div class="author">
+                                    <div class="author-image">
+                                        <img src="assets/images/cat-5646889_640.jpg" />
+                                    </div>
+                                    <div class="author-info">
+                                        <span class="name">Adam Smith</span>
+                                        <span class="desig">Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/auto-repair-shop-1954636_1920.jpg" alt="" class="bg-slide" />
+                            <div class="info">
+                                <div class="testimonial">Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia.</div>
+                                <div class="author">
+                                    <div class="author-image">
+                                        <img src="assets/images/cat-5646889_640.jpg" />
+                                    </div>
+                                    <div class="author-info">
+                                        <span class="name">Adam Smith</span>
+                                        <span class="desig">Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/workshop-3758513_1920.jpg" alt="" class="bg-slide" />
+                            <div class="info">
+                                <div class="testimonial">Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia.</div>
+                                <div class="author">
+                                    <div class="author-image">
+                                        <img src="assets/images/cat-5646889_640.jpg" />
+                                    </div>
+                                    <div class="author-info">
+                                        <span class="name">Adam Smith</span>
+                                        <span class="desig">Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/auto-repair-3691962_1920.jpg" alt="" class="bg-slide" />
+                            <div class="info">
+                                <div class="testimonial">Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet.</div>
+                                <div class="author">
+                                    <div class="author-image">
+                                        <img src="assets/images/cat-5646889_640.jpg" />
+                                    </div>
+                                    <div class="author-info">
+                                        <span class="name">Adam Smith</span>
+                                        <span class="desig">Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </section>
+
+
+
+
+
+
+
+
+
     <footer>
         <div class="container">
             <div class="row footer-top">
@@ -184,6 +268,8 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="assets/owl/owl.carousel.min.js"></script>
+    
     <script>
         jQuery(function(){
             jQuery(window).on('scroll', function(){
@@ -193,6 +279,24 @@
                 }else{
                     jQuery('header').removeClass('fixed');
                 }
+            });
+
+            jQuery('.slider').owlCarousel({
+                dots:false,
+                autoplay: true,
+                margin:10,
+                loop: true,
+                responsive:{
+                            0:{
+                                items:1
+                            },
+                            768:{
+                                items:2
+                            },
+                            1024:{
+                                items:3
+                            }
+                        }
             });
 
         })

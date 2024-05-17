@@ -251,6 +251,82 @@ body .home-features .items .item h3 {
   letter-spacing: normal;
   margin-bottom: 20px;
 }
+body .home-client-testimonials {
+  background-color: #FFFFFF;
+  padding: 50px 0;
+}
+body .home-client-testimonials .section-title {
+  padding: 20px 0;
+  color: #091D21;
+  text-align: center;
+}
+body .home-client-testimonials .owl-carousel .owl-stage-outer {
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+}
+body .home-client-testimonials .owl-carousel .owl-stage {
+  height: 435px !important;
+}
+body .home-client-testimonials .slider {
+  width: 100%;
+  margin-bottom: 40px;
+}
+body .home-client-testimonials .slider .item {
+  position: relative;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .home-client-testimonials .slider .item .bg-slide {
+  z-index: -9;
+}
+body .home-client-testimonials .slider .item .info {
+  position: absolute;
+  z-index: 9999999999;
+  top: 40px;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFFFFF;
+  border: 1px solid #a9a9a9;
+  box-shadow: 0px 14px 19px -7px rgb(0, 0, 0);
+  width: 80%;
+}
+body .home-client-testimonials .slider .item .info .testimonial {
+  color: #091D21;
+}
+body .home-client-testimonials .slider .item .info .author {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0;
+}
+body .home-client-testimonials .slider .item .info .author .author-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  background-color: #9a9a9a;
+  overflow: hidden;
+}
+body .home-client-testimonials .slider .item .info .author .author-image img {
+  max-width: 100%;
+}
+body .home-client-testimonials .slider .item .info .author .author-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+}
+body .home-client-testimonials .slider .item .info .author .author-info .name {
+  font-weight: 700;
+  color: #091D21;
+  text-transform: capitalize;
+}
+body .home-client-testimonials .slider .item .info .author .author-info .desig {
+  color: #E54029;
+  font-size: 14px;
+}
 body footer {
   padding: 50px 0 20px;
 }
