@@ -104,8 +104,12 @@ body{
         }
         .header-top{
             overflow: hidden;
-            animation: showHeaderTop 200ms forwards;
+            // animation: showHeaderTop 200ms forwards;
             border-bottom: 1px solid $gray;
+            @media screen and (max-width:768px){    
+                overflow: auto;
+                
+            }
             .container{
                 .row{
                     .col{
@@ -124,16 +128,24 @@ body{
                             @media only screen and (max-width:768px){
                                 justify-content: center;
                                 width: 100%;
+                                
                             }
                             .mail{
                                 font-weight: 700;
                                 width:max-content;
                                 margin-right: 20px;
+                                @media only screen and (max-width:768px){   
+                                    font-size: 14px;
+                                    
+                                }
                             }
                             .addr{
                                 font-weight: 700;
                                 width: max-content;
                                 margin-right: 20px;
+                                @media only screen and (max-width:768px){   
+                                    font-size: 14px;
+                                }
                             }
                         }
                         .right{
@@ -570,14 +582,20 @@ body{
             margin: 0 auto;
             padding: 10px 20px;
         }
-        .info-item{
-            strong{
-                width:100%;
-                display: block;
-                padding: 10px 0;
-                border-top: 1px solid $white2;
+        .contact-info{
+            @media  screen and (max-width:768px){   
+                margin-top: 30px;
+            }
+            .info-item{
+                strong{
+                    width:100%;
+                    display: block;
+                    padding: 10px 0;
+                    border-top: 1px solid $white2;
+                }
             }
         }
+        
     }
     .blogs{
         padding: 50px 0;

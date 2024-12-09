@@ -88,8 +88,12 @@ body header .fa-solid {
 }
 body header .header-top {
   overflow: hidden;
-  animation: showHeaderTop 200ms forwards;
   border-bottom: 1px solid #ababab;
+}
+@media screen and (max-width: 768px) {
+  body header .header-top {
+    overflow: auto;
+  }
 }
 body header .header-top .container .row .col {
   flex-direction: row;
@@ -117,10 +121,20 @@ body header .header-top .container .row .col .left .mail {
   width: max-content;
   margin-right: 20px;
 }
+@media only screen and (max-width: 768px) {
+  body header .header-top .container .row .col .left .mail {
+    font-size: 14px;
+  }
+}
 body header .header-top .container .row .col .left .addr {
   font-weight: 700;
   width: max-content;
   margin-right: 20px;
+}
+@media only screen and (max-width: 768px) {
+  body header .header-top .container .row .col .left .addr {
+    font-size: 14px;
+  }
 }
 body header .header-top .container .row .col .right {
   display: flex;
@@ -504,7 +518,12 @@ body .contact-form button {
   margin: 0 auto;
   padding: 10px 20px;
 }
-body .contact-form .info-item strong {
+@media screen and (max-width: 768px) {
+  body .contact-form .contact-info {
+    margin-top: 30px;
+  }
+}
+body .contact-form .contact-info .info-item strong {
   width: 100%;
   display: block;
   padding: 10px 0;
