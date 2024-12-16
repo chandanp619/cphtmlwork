@@ -267,7 +267,7 @@ DefaultStyleOptions =  {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '170px'
+        width: '120px'
     },
     volumeControl: {
         '-webkit-appearance': 'none',
@@ -275,7 +275,7 @@ DefaultStyleOptions =  {
         height: '5px',
         marginTop: '10px',
         backgroundColor : '#dddddd',
-        width:'80%'
+        width:'70%'
     }
 };
 class CP_Player{

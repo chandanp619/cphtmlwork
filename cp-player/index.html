@@ -55,9 +55,13 @@
             text-align: left;
             width:80%;
             overflow: scroll;
+            @media only screen and (max-width:768px){
+                width:100%;
+            }
         }
         table{
-            width:80%;
+            max-width: 100%;
+            width:100%;
             border:1px solid #a9a9a9;
             border-collapse: collapse;
             margin-left:auto;
@@ -205,7 +209,7 @@
         <td>cpplayer</td>
         <td>Custom CSS classes</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         backgroundColor: "#bb1111",
         border:"2px solid #900",
@@ -216,24 +220,24 @@
         marginBottom:"16px",
         padding:"16px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>audioInfo</td>
         <td>Style Audio Info Section</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         marginBottom:"5px",
         width:"100%"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>audioInfoDescContainer</td>
         <td>Style Audio Info  Text Section</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "flexStart",
         display: "flex",
@@ -244,24 +248,24 @@
         paddingRight:"10px",
         width: "100%"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>audioInfoImage</td>
         <td>Style Audio Info Image Section</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         height:"100px",
         width:"100px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>controlItem</td>
         <td>Style Control Items</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         border:"1px solid #f88",
@@ -274,13 +278,13 @@
         padding: "20px 0",
         width:"36px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>controls</td>
         <td>Style Controls</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         display: "flex",
@@ -288,13 +292,13 @@
         justifyContent: "space-around",
         width: "100%"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>muteBtn</td>
         <td>Style Mute Button</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         backgroundColor: "#fff",
@@ -309,13 +313,13 @@
         padding: "12px",
         width:"16px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>nextTrackBtn</td>
         <td>Syle Next Track Button</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         backgroundColor: "#fff",
@@ -330,13 +334,13 @@
         padding: "12px",
         width:"16px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>prevTrackBtn</td>
         <td>Style Previous Track Button</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         backgroundColor: "#fff",
@@ -351,13 +355,13 @@
         padding: "12px",
         width:"16px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>playBtn</td>
         <td>Style Play Button</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         backgroundColor: "#fff",
@@ -371,13 +375,13 @@
         padding:"18px",
         width:"60px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>pauseBtn</td>
         <td>Style Pause Button</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         backgroundColor: "#fff",
@@ -391,23 +395,23 @@
         padding:"18px",
         width:"60px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>PlaylistPlayIcons</td>
         <td>Style Playlist Play Icons</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         fontSize: "10px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>playlistBtn</td>
         <td>Style Playlist Button</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         backgroundColor: "#f88",
         borderRadius: "5px",
@@ -419,13 +423,13 @@
         margin: "10px 0",
         padding: "10px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>progressBar</td>
         <td>Style Progress Bar</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         borderRadius: "5px",
         backgroundColor: "#fff",
@@ -436,13 +440,13 @@
         position: "relative",
         width:"80%"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>playlist</td>
         <td>Style Playlist Container</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         backgroundColor: "#fff",
         borderRadius: "5px",
@@ -452,13 +456,13 @@
         scrollbarWidth: "none",
         width: "100%"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>row1</td>
         <td>Style controls row</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         display: "flex",
         flexDirection: "column",
@@ -466,13 +470,13 @@
         alignItems: "center",
         width: "100%"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>row2</td>
         <td>Style playlist row</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         display: "flex",
@@ -481,26 +485,26 @@
         marginTop: "8px",
         width: "100%"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>seekBar</td>
         <td>Style Seek Bar Container</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         backgroundColor: "#000",
         borderRadius: "5px",
         height: "100%",
         width:"0%"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>seekControls</td>
         <td>Style Seek Controls</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         backgroundColor: "transparent",
         border:"none",
@@ -509,13 +513,13 @@
         justifyContent: "space-between",
         width:"75px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>seekForwardBtn</td>
         <td>Style Seek Forward Button</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         border:"1px solid #fff",
@@ -530,13 +534,13 @@
         padding: "12px",
         width:"16px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>seekBackwardBtn</td>
         <td>Style Seek Backward Button</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         backgroundColor: "#fff",
@@ -551,13 +555,13 @@
         padding: "12px",
         width: '16px'
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>timelapse</td>
         <td>Syle Timelapse</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         color: "#fff",
         fontSize: "12px",
@@ -566,13 +570,13 @@
         textAlign: "left",
         width:"auto"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>timeline</td>
         <td>Style Timeline</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         display: "flex",
@@ -580,13 +584,13 @@
         justifyContent: "center",
         width:"100%"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>track</td>
         <td>Style Track</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         borderBottom: "1px solid #888",
@@ -595,13 +599,13 @@
         justifyContent: "space-between",
         padding: "5px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>togglePlaylistBtn</td>
         <td>Style Toggle Playlist Button</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         alignItems: "center",
         backgroundColor: "#fff",
@@ -616,13 +620,13 @@
         padding: "12px",
         width:"16px"
     }
-        </pre></td>
+        </td>
     </tr>
     <tr>
         <td>trackControls</td>
         <td>Style Track Controls</td>
         <td>Object</td>
-        <td><pre>
+        <td>
     {
         backgroundColor: "transparent",
         border:"none",
@@ -631,13 +635,13 @@
         justifyContent: "space-between",
         width:"75px"    
     }
-</pre></td>
+</td>
     </tr>
     <tr>
         <td>unmuteBtn</td>
         <td>Style Unmute Button</td>
         <td>Object</td>
-        <td><pre>{
+        <td>{
         alignItems: "center",
         backgroundColor: "#fff",
         border:"1px solid #fff",
@@ -650,7 +654,7 @@
         justifyContent: "center",
         flexGrow: "0",
         padding: "8px"
-}</pre></td>
+}</td>
     </tr>
 </table>
 <br/>
