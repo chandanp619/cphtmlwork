@@ -37,8 +37,8 @@ DefaultStyleOptions =  {
         width: "100%"
     },
     cpplayer:{
-        backgroundColor: "#bb1111",
-        border:"2px solid #900",
+        backgroundColor: "#111188",
+        border:"2px solid #009",
         borderRadius: "8px",
         boxSizing: "border-box",
         dislay: "flex",
@@ -331,8 +331,6 @@ class CP_Player{
         row2.className = "row2";
 
         if(this.options.audioInfo){
-
-
         const infodiv = document.createElement("div");
         infodiv.className = "audioInfo";
 
@@ -787,7 +785,7 @@ class CP_Player{
     }
 
     renderAudioInfo = ($tags)=>{
-        if($tags){
+        if(this.options.audioInfo && $tags){
             if($tags.image){
                 this.activeAudioInfoImage.src = $tags.image;
             }else{
