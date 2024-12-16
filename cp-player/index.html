@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/ico" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+        }
+
+        h2{
+            font-weight: 400;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 28px;
+        }
+        h3{
+            text-align: center;
+        }
+        p{
+            font-size: 22px;
+            font-weight: 400;
+            text-align: center;
+            padding: 20px 0;
+        }
+        a{
+            font-weight: 400;
+        }
+        strong{
+            font-weight: 500;
+        }
+        code{
+            white-space: pre;
+            font-size: 18px;
+            font-weight: 400;
+            margin-left:auto;
+            margin-right: auto;
+            display: block;
+            background-color: #ddd;
+            color:#000;
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            text-align: left;
+            width:80%;
+        }
+        table{
+            width:80%;
+            border:1px solid #a9a9a9;
+            border-collapse: collapse;
+            margin-left:auto;
+            margin-right: auto;
+        }
+        td,th{
+            border:1px solid #a9a9a9;
+            padding:10px;
+            text-align: left;
+        }
+        tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>CP Player - Your MP3 Player Solution</h2>
+    <div id="mpplayer2"></div>
+    <p>This is a straight forward MP3 player build with HTML, CSS and JavaScript. You can use it on your website by following simple steps.</p>
+    <p><strong>Step 1:</strong> Add the following HTML code to your page: 
+        <code>
+        &lt;div id="myplayer"&gt;&lt;/div&gt;
+        </code>
+    </p>
+    <p><strong>Step 2:</strong> <strong><a download href="./cp-player.min.js">Download</a></strong> and Add the following JavaScript library to your page:
+
+        <code>
+        &lt;script src="cp-player.min.js"&gt;&lt;/script&gt;
+        </code>
+    </p>
+    <p>
+        <strong>Step 3:</strong> Add the following JavaScript code to your page:
+        <code>
+            <span>// Create a playlist</span>
+
+        const playlist = [<br/>
+            'http://yourserver.com/assets/audio/1.mp3', <br/>
+            'http://yourserver.com/assets/audio/2.mp3', <br/>
+            'http://yourserver.com/assets/audio/3.mp3', <br/>
+            'http://yourserver.com/assets/audio/4.mp3', <br/>
+        ]; <br/><br/>
+        <span>// See all <a href="#options">options</a> for customization of player.</span><br/>
+        const options = { <br/>
+            useFontAwesome: true,<br/>
+            useDefaultStyle: true,<br/>
+            ... <br/>
+        }; <br/><br/>
+        <span>// See all <a href="#styleOptions">styleOptions</a> for design customization.</span><br/>
+        const styleOptions1 = { <br/>
+            cpplayer: { <br/>
+                backgroundColor: '#118911', <br/>
+                border: 'none', <br/>
+                borderRadius: '0', <br/>
+                color: '#fff', <br/>
+                display: 'flex', <br/>
+                flexDirection: 'column', <br/>
+                alignItems: 'center', <br/>
+                justifyContent: 'center', <br/>
+                backgroundImage: "url('./assets/images/1.jpg')", <br/>
+                backgroundSize: 'cover', <br/>
+                backgroundPosition: 'center', <br/>
+                backgroundBlendMode: 'multiply', <br/>
+                width: '100%', <br/>
+            }, <br/>
+            ... <br/>
+        }; <br/><br/>
+        <span>// Finally, Initialize Player with all the parameters above.</span>
+        <br/>
+        const player = new CP_Player(playlist, options, 'myplayer', styleOptions1);<br/>
+        </code>
+    </p>
+    
+    
+    <div id="mpplayer1"></div>
+
+<h3 id="options"> <strong>Options</strong></h3>
+<br/>
+<table>
+    <tr>
+        <th><strong>Option</strong></th>
+        <th><strong>Description</strong></th>
+        <th><strong>Type</strong></th>
+        <th><strong>Default Value</strong></th>
+    </tr>
+    <tr>
+        <td>useFontAwesome</td>
+        <td>Use font awesome icons library</td>
+        <td>Boolean</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>showSoundControl</td>
+        <td>Show / hide sound control</td>
+        <td>Boolean</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>seekControls</td>
+        <td>Show / hide seek controls</td>
+        <td>Boolean</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>nextPreviousControls</td>
+        <td>Show / hide next/previous controls</td>
+        <td>Boolean</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>playlist</td>
+        <td>Show / hide playlist</td>
+        <td>Boolean</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>showTimeLapse</td>
+        <td>Show / hide time lapse</td>
+        <td>Boolean</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>audioInfo</td>
+        <td>Show / hide audio info</td>
+        <td>Boolean</td>
+        <td>false</td>
+    </tr>
+</table>
+<br/>
+<br/>
+<h3 id="styleOptions"> <strong>Style Options</strong></h3>
+<br/>
+<table>
+    <tr>
+        <th><strong>Option</strong></th>
+        <th><strong>Description</strong></th>
+        <th><strong>Type</strong></th>
+        <th><strong>Default Value</strong></th>
+    </tr>
+    <tr>
+        <td>cpplayer</td>
+        <td>Custom CSS classes</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        backgroundColor: "#bb1111",
+        border:"2px solid #900",
+        borderRadius: "8px",
+        boxSizing: "border-box",
+        dislay: "flex",
+        flexDirection: "column",
+        marginBottom:"16px",
+        padding:"16px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>audioInfo</td>
+        <td>Style Audio Info Section</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        marginBottom:"5px",
+        width:"100%"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>audioInfoDescContainer</td>
+        <td>Style Audio Info  Text Section</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "flexStart",
+        display: "flex",
+        flexDirection: "column",
+        fontSize:"12px",
+        justifyContent: "space-between",
+        paddingLeft:"10px",
+        paddingRight:"10px",
+        width: "100%"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>audioInfoImage</td>
+        <td>Style Audio Info Image Section</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        height:"100px",
+        width:"100px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>controlItem</td>
+        <td>Style Control Items</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        border:"1px solid #f88",
+        backgroundColor: "#f88",
+        borderRadius: "30px",
+        display: "flex",
+        flexGrow: "0",
+        height: "36px",
+        justifyContent: "center",
+        padding: "20px 0",
+        width:"36px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>controls</td>
+        <td>Style Controls</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        width: "100%"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>muteBtn</td>
+        <td>Style Mute Button</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        backgroundColor: "#fff",
+        border:"1px solid #fff",
+        borderRadius: "30px",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        color: "#000",
+        display: "flex",
+        flexGrow: "0",
+        height: "16px",
+        justifyContent: "center",
+        padding: "12px",
+        width:"16px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>nextTrackBtn</td>
+        <td>Syle Next Track Button</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        backgroundColor: "#fff",
+        border:"1px solid #fff",
+        borderRadius: "30px",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        color: "#000",
+        display: "flex",
+        flexGrow: "0",
+        height: "16px",
+        justifyContent: "center",
+        padding: "12px",
+        width:"16px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>prevTrackBtn</td>
+        <td>Style Previous Track Button</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        backgroundColor: "#fff",
+        border:"1px solid #fff",
+        borderRadius: "30px",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        color: "#000",
+        display: "flex",
+        flexGrow: "0",
+        height: "16px",
+        justifyContent: "center",
+        padding: "12px",
+        width:"16px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>playBtn</td>
+        <td>Style Play Button</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        backgroundColor: "#fff",
+        borderRadius: "50%",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        color:"#000",
+        display: "flex",
+        fontSize: "24px",
+        height:"60px",
+        justifyContent: "center",
+        padding:"18px",
+        width:"60px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>pauseBtn</td>
+        <td>Style Pause Button</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        backgroundColor: "#fff",
+        borderRadius: "50%",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        color:"#000",
+        display: "flex",
+        fontSize: "24px",
+        height:"60px",
+        justifyContent: "center",
+        padding:"18px",
+        width:"60px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>PlaylistPlayIcons</td>
+        <td>Style Playlist Play Icons</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        fontSize: "10px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>playlistBtn</td>
+        <td>Style Playlist Button</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        backgroundColor: "#f88",
+        borderRadius: "5px",
+        border: "1px solid #000",
+        color: "#000",
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+        margin: "10px 0",
+        padding: "10px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>progressBar</td>
+        <td>Style Progress Bar</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        borderRadius: "5px",
+        backgroundColor: "#fff",
+        display: "flex",
+        flexDirection: "row",
+        height: "5px",
+        margin: "20px 0",
+        position: "relative",
+        width:"80%"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>playlist</td>
+        <td>Style Playlist Container</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        backgroundColor: "#fff",
+        borderRadius: "5px",
+        height: "100px",
+        overflowY: "scroll",
+        padding: "10px",
+        scrollbarWidth: "none",
+        width: "100%"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>row1</td>
+        <td>Style controls row</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>row2</td>
+        <td>Style playlist row</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: "8px",
+        width: "100%"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>seekBar</td>
+        <td>Style Seek Bar Container</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        backgroundColor: "#000",
+        borderRadius: "5px",
+        height: "100%",
+        width:"0%"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>seekControls</td>
+        <td>Style Seek Controls</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        backgroundColor: "transparent",
+        border:"none",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width:"75px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>seekForwardBtn</td>
+        <td>Style Seek Forward Button</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        border:"1px solid #fff",
+        backgroundColor: "#fff",
+        borderRadius: "30px",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        color: "#000",
+        display: "flex",
+        flexGrow: "0",
+        height: "16px",
+        justifyContent: "center",
+        padding: "12px",
+        width:"16px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>seekBackwardBtn</td>
+        <td>Style Seek Backward Button</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        backgroundColor: "#fff",
+        border:"1px solid #fff",
+        borderRadius: "30px",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        color: "#000",
+        display: "flex",
+        flexGrow: "0",
+        height: "16px",
+        justifyContent: "center",
+        padding: "12px",
+        width: '16px'
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>timelapse</td>
+        <td>Syle Timelapse</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        color: "#fff",
+        fontSize: "12px",
+        marginLeft: "5px",
+        marginRight: "5px",
+        textAlign: "left",
+        width:"auto"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>timeline</td>
+        <td>Style Timeline</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        width:"100%"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>track</td>
+        <td>Style Track</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        borderBottom: "1px solid #888",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        padding: "5px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>togglePlaylistBtn</td>
+        <td>Style Toggle Playlist Button</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        alignItems: "center",
+        backgroundColor: "#fff",
+        border:"1px solid #fff",
+        borderRadius: "30px",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        color: "#000",
+        display: "flex",
+        flexGrow: "0",
+        height: "16px",
+        justifyContent: "center",
+        padding: "12px",
+        width:"16px"
+    }
+        </pre></td>
+    </tr>
+    <tr>
+        <td>trackControls</td>
+        <td>Style Track Controls</td>
+        <td>Object</td>
+        <td><pre>
+    {
+        backgroundColor: "transparent",
+        border:"none",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width:"75px"    
+    }
+</pre></td>
+    </tr>
+    <tr>
+        <td>unmuteBtn</td>
+        <td>Style Unmute Button</td>
+        <td>Object</td>
+        <td><pre>{
+        alignItems: "center",
+        backgroundColor: "#fff",
+        border:"1px solid #fff",
+        borderRadius: "30px",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        color: "#000",
+        display: "flex",
+        width:"16px",
+        height: "16px",
+        justifyContent: "center",
+        flexGrow: "0",
+        padding: "8px"
+}</pre></td>
+    </tr>
+</table>
+<br/>
+<br/>
+
+    <script src="./cp-player.min.js"></script>
+    <script>
+        // Usage Example
+        const playlist1 = [
+            'http://localhost/test-work/html/cphtmlwork/CPPlayer/assets/audio/Who-Says(PagalNew.Com.Se).mp3',
+            'http://localhost/test-work/html/cphtmlwork/CPPlayer/assets/audio/Hai Rama Rangeela 320 Kbps.mp3',
+            'http://localhost/test-work/html/cphtmlwork/CPPlayer/assets/audio/naina na jodi.mp3',
+            'http://localhost/test-work/html/cphtmlwork/CPPlayer/assets/audio/Naina Jo Saanjhe Khwab Dekhte The.mp3',
+            'http://localhost/test-work/html/cphtmlwork/CPPlayer/assets/audio/Roke Na Ruke Naina.mp3',
+            'http://localhost/test-work/html/cphtmlwork/CPPlayer/assets/audio/Abhi Mujh Mein Kahin.mp3',
+        ];
+        const playlist2 = [
+            'http://localhost/test-work/html/cphtmlwork/CPPlayer/assets/audio/1.mp3', 
+            'http://localhost/test-work/html/cphtmlwork/CPPlayer/assets/audio/2.mp3', 
+            'http://localhost/test-work/html/cphtmlwork/CPPlayer/assets/audio/3.mp3',
+        ];
+
+        const options1 = {
+            useFontAwesome: true,
+            showSoundControl: true,
+            seekControls:true,
+            nextPreviousControls: true,
+            playlist: true,
+            showTimeLapse: true,
+            audioInfo: false,
+            
+        };
+        const options2 = {
+            useFontAwesome: true,
+            showSoundControl: true,
+            seekControls:true,
+            nextPreviousControls: true,
+            playlist: false,
+            showTimeLapse: true,
+            audioInfo: false,
+            
+        };
+        const styleOptions1 = {
+            cpplayer: {
+                backgroundColor: '#118911',
+                border: 'none',
+                borderRadius: '0',
+                color: '#fff',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundImage: "url('./assets/images/1.jpg')",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundBlendMode: 'multiply',
+                width: '100%',
+            },
+            row1:{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+            },
+            row2:{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+            },
+            audioInfo:{
+                padding: '10px',
+                borderRadius: '8px',
+                backgrondColor:'#ff0000',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'flexStart',
+                width: 'auto',
+            },
+            audioInfoImage: {
+               width:'100px',
+               height:'100px'
+            },
+            audioInfoDescContainer:{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'flexStart',
+                width: '100%',
+                fontSize:'12px',
+            },
+            playBtn:{
+                backgroundColor: '#fff',
+                color: '#000',
+                padding:'12px'
+            },
+            muteBtn: {
+                backgroundColor: '#fff',
+                color: '#000',
+                padding:'12px',
+                fontSize:'10px'
+            },
+            unmuteBtn: {
+                backgroundColor: '#fff',
+                color: '#000',
+                padding:'12px',
+                fontSize:'10px'
+            },
+            pauseBtn: {
+                backgroundColor: '#000',
+                color: '#f80',
+                padding:'18px'
+            },
+            seekBar: {
+                backgroundColor: '#f80',
+            },
+            timeline:{
+                flexDirection:'row-reverse',
+            },
+            timelapse:{
+                color: '#f00',
+                fontWeight: 'bold'
+            },
+            seekForwardBtn: {
+                backgroundColor: '#fff',
+                color: '#000',
+                padding:'12px'
+            },
+            seekBackwardBtn: {
+                backgroundColor: '#fff',
+                color: '#000',
+                padding:'12px'
+            },
+            prevTrackBtn: {
+                backgroundColor: '#fff',
+                color: '#000',
+                padding:'12px'
+            },
+            nextTrackBtn: {
+                backgroundColor: '#fff',
+                color: '#000',
+                padding:'12px'
+            },
+            playlist: {
+                backgroundColor: '#555',
+                color: '#fff',
+            }
+        };
+        const styleOptions2 = {};
+        
+        const player1 = new CP_Player(playlist1, options1, 'mpplayer1', styleOptions1);
+        const player2 = new CP_Player(playlist2, options2, 'mpplayer2', styleOptions2);
+    </script>
+</body>
+</html>
