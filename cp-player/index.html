@@ -31,6 +31,7 @@
             font-size: 22px;
             font-weight: 400;
             text-align: center;
+            line-height: 1.5;
             padding: 20px 0;
         }
         a{
@@ -53,6 +54,7 @@
             margin-top: 10px;
             text-align: left;
             width:80%;
+            overflow: scroll;
         }
         table{
             width:80%;
@@ -65,16 +67,21 @@
             border:1px solid #a9a9a9;
             padding:10px;
             text-align: left;
+            font-weight: 300;
         }
         tr:nth-child(even){
             background-color: #f2f2f2;
+        }
+        pre{
+            font-weight: 300;
+            overflow: scroll;
         }
     </style>
 </head>
 <body>
     <h2>CP Player - Your MP3 Player Solution</h2>
     <div id="mpplayer2"></div>
-    <p>This is a straight forward MP3 player build with HTML, CSS and JavaScript. You can use it on your website by following simple steps.</p>
+    <p>This is a straight forward MP3 player build with HTML CSS and Javascript, It can be used on any website that uses audio podcast, audio tutorials and many more. It's very simple to setup. You can use it on your website by following simple steps.</p>
     <p><strong>Step 1:</strong> Add the following HTML code to your page: 
         <code>
         &lt;div id="myplayer"&gt;&lt;/div&gt;
@@ -100,7 +107,7 @@
         <span>// See all <a href="#options">options</a> for customization of player.</span><br/>
         const options = { <br/>
             useFontAwesome: true,<br/>
-            useDefaultStyle: true,<br/>
+            audioInfo: false,<br/>
             ... <br/>
         }; <br/><br/>
         <span>// See all <a href="#styleOptions">styleOptions</a> for design customization.</span><br/>

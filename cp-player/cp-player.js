@@ -261,14 +261,30 @@ DefaultStyleOptions =  {
         height: "16px",
         justifyContent: "center",
         flexGrow: "0",
-        padding: "8px"
+        padding: "12px"
+    },
+    volContainer:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '170px'
+    },
+    volumeControl: {
+        '-webkit-appearance': 'none',
+        appearance: 'none',
+        height: '5px',
+        marginTop: '10px',
+        backgroundColor : '#dddddd',
+        width:'80%'
     }
 };
 class CP_Player{
     constructor(playlist, options, playerId, styleOptions={}){
         this.playlist = playlist;
         this.trackIndex = 0;
+        this.playerVolume = 0.5;
         this.currentTrack = this.playlist[this.trackIndex];
+
         this.music = new Audio(this.currentTrack);
         this.options = options;
         this.activeAudioTags = {};
@@ -386,13 +402,16 @@ class CP_Player{
         controlsDiv.appendChild(pauseBtn);
 
         if(this.options.showSoundControl) {
+            const volContainer = document.createElement('div');
+            volContainer.className = 'vol-container';
+
             // Mute button
             const muteBtn = document.createElement("div");
             muteBtn.className = "muteBtn";
             const muteIcon = document.createElement("i");
             muteIcon.className = "fa-solid fa-volume-high";
             muteBtn.appendChild(muteIcon);
-            controlsDiv.appendChild(muteBtn);
+            volContainer.appendChild(muteBtn);
 
             // Unmute button
             const unmuteBtn = document.createElement("div");
@@ -400,7 +419,20 @@ class CP_Player{
             const unmuteIcon = document.createElement("i");
             unmuteIcon.className = "fa-solid fa-volume-xmark";
             unmuteBtn.appendChild(unmuteIcon);
-            controlsDiv.appendChild(unmuteBtn);
+            volContainer.appendChild(unmuteBtn);
+
+            // volume control
+            const volumeControl = document.createElement('input');
+            volumeControl.type = 'range';
+            volumeControl.className = 'volume-control';
+            volumeControl.value = parseInt(this.playerVolume) * 10;
+            volumeControl.max = 10;
+            volumeControl.min = 0;
+            volumeControl.step = 1;
+            volContainer.appendChild(volumeControl);
+
+            controlsDiv.appendChild(volContainer);
+
         }
         // Seek controls
         const seekControlsDiv = document.createElement("div");
@@ -564,6 +596,16 @@ class CP_Player{
             if (styleOptions.unmuteBtn) {
                 Object.assign(unmuteBtn.style, this.styleOptions.unmuteBtn);
             }
+
+            const volumeContainer = this.playerSection.querySelector('.vol-container');
+            if(styleOptions.volContainer){
+                Object.assign(volumeContainer.style, this.styleOptions.volContainer);
+            }
+
+            const volumeControl = this.playerSection.querySelector('.volume-control');
+            if(styleOptions.volumeControl){
+                Object.assign(volumeControl.style, this.styleOptions.volumeControl);
+            }
         }
         if(this.options.seekControls){
             const seekForwardButton = this.playerSection.querySelector(".seekForward");
@@ -637,6 +679,7 @@ class CP_Player{
         if(this.options.showSoundControl){
             this.muteButton = playerSection.querySelector(".muteBtn");
             this.unmuteButton = playerSection.querySelector(".unmuteBtn");
+            this.volumeControl = playerSection.querySelector('.volume-control');
         }
         this.seekBar = playerSection.querySelector(".seekBar");
         if(this.options.showTimeLapse){
@@ -674,6 +717,7 @@ class CP_Player{
         if(this.options.showSoundControl){
             this.muteButton.addEventListener("click", () => this.mute());
             this.unmuteButton.addEventListener("click", () => this.unmute());
+            this.volumeControl.addEventListener('input', (e)=> this.updateVolume(e));
         }
        if(this.options.nextPreviousControls){
             this.prevTrackButton.addEventListener("click", () => this.prevTrack());
@@ -722,6 +766,10 @@ class CP_Player{
         this.music.muted = false;
         this.muteButton.classList.remove("hide");
         this.unmuteButton.classList.add("hide");
+    }
+
+    updateVolume(e) {
+        this.music.volume = parseInt(e.target.value) / 10;
     }
 
     seekForward() {
