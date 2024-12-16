@@ -774,14 +774,15 @@ class CP_Player{
     }
 
     updateActiveTrack() {
-
-        const tracks = this.playlistContainer.querySelectorAll(".track");
-        tracks.forEach((track, index) => {
-            if(index === this.trackIndex)
-            track.classList.add("active_track");
-            else
-            track.classList.remove("active_track");
-        });
+        if(this.options.playlist){
+            const tracks = this.playlistContainer.querySelectorAll(".track");
+            tracks.forEach((track, index) => {
+                if(index === this.trackIndex)
+                track.classList.add("active_track");
+                else
+                track.classList.remove("active_track");
+            });
+        }
     }
 
     renderAudioInfo = ($tags)=>{
