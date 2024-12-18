@@ -1,7 +1,8 @@
 DefaultStyleOptions =  {
     audioInfo:{
         marginBottom:"5px",
-        width:"100%"
+        width:"100%",
+        minWidth:"50%"
     },
     audioInfoDescContainer:{
         alignItems: "flexStart",

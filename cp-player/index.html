@@ -17,7 +17,9 @@
             font-weight: 100;
             font-style: normal;
         }
-
+        body{
+            padding:10px;
+        }
         h2{
             font-weight: 400;
             text-align: center;
@@ -81,6 +83,13 @@
         pre{
             font-weight: 300;
             overflow-y: scroll;
+        }
+        ul {
+            list-style-type: none;
+        }
+        li{
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
         @media only screen and (max-width:768px){
             table{
@@ -154,7 +163,7 @@
 
 <h3 id="options"> <strong>Options</strong></h3>
 <br/>
-<table>
+<table id="optionsTbl" class="optionsTbl">
     <tr>
         <th><strong>Option</strong></th>
         <th><strong>Description</strong></th>
@@ -208,7 +217,7 @@
 <br/>
 <h3 id="styleOptions"> <strong>Style Options</strong></h3>
 <br/>
-<table>
+<table id="styleOptionsTbl" class="styleOptionsTbl">
     <tr>
         <th><strong>Option</strong></th>
         <th><strong>Description</strong></th>
@@ -669,7 +678,7 @@
 </table>
 <br/>
 <br/>
-
+    <script src="../table2list/table2list.min.js"></script>
     <script src="./cp-player.min.js"></script>
     <script>
         //var base_url = 'https://chandanp619.github.io/cphtmlwork/cp-player';
@@ -822,6 +831,11 @@
         
         const player1 = new CP_Player(playlist1, options1, 'mpplayer1', styleOptions1);
         const player2 = new CP_Player(playlist2, options2, 'mpplayer2', styleOptions2);
+
+        const tbl1 = document.getElementById('optionsTbl');
+        const tbl2 = document.getElementById('styleOptionsTbl');
+        new Table2List(tbl1, 768);
+        new Table2List(tbl2, 768);
     </script>
 <!-- cdnjs jquery -->
 

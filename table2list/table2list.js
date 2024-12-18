@@ -34,9 +34,6 @@ class Table2List {
             let cell = headerRow.cells[i];
             this.headers[i] = cell.textContent;
         }
-        console.log(this.headers);
-    
-
         for(let i = 1; i < this.table.rows.length; i++) {
             let row = this.table.rows[i];
             let cells = [];
@@ -46,8 +43,6 @@ class Table2List {
             }
             this.data.push(cells);
         }
-
-        console.log(this.data);
     }
 
     renderList() {
