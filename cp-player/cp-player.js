@@ -770,6 +770,7 @@ class CP_Player{
     }
     
     startAnimateBars() {
+        this.initialize_animation();
         this.animation_analyser.getByteFrequencyData(this.animation_dataArray);
         if (this?.bars.length > 0) {
             this?.bars.forEach((bar, i) => {
