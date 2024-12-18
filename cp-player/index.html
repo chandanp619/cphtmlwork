@@ -54,7 +54,7 @@
             margin-top: 10px;
             text-align: left;
             width:80%;
-            overflow: scroll;
+            overflow-y: scroll;
             @media only screen and (max-width:768px){
                 width:100%;
             }
@@ -66,19 +66,29 @@
             border-collapse: collapse;
             margin-left:auto;
             margin-right: auto;
+            overflow-x:auto;
         }
         td,th{
             border:1px solid #a9a9a9;
             padding:10px;
             text-align: left;
             font-weight: 300;
+            white-space: pre-wrap;
         }
         tr:nth-child(even){
             background-color: #f2f2f2;
         }
         pre{
             font-weight: 300;
-            overflow: scroll;
+            overflow-y: scroll;
+        }
+        @media only screen and (max-width:768px){
+            table{
+                width:100%;
+            }
+            code{
+                width:100%;
+            }
         }
     </style>
 </head>
@@ -660,21 +670,23 @@
 <br/>
 <br/>
 
-    <script src="./cp-player.min.js"></script>
+    <script src="./cp-player.js"></script>
     <script>
+        //var base_url = 'https://chandanp619.github.io/cphtmlwork/cp-player';
+        var base_url = '.';
         // Usage Example
         const playlist1 = [
-            'https://chandanp619.github.io/cphtmlwork/cp-player/assets/audio/Who-Says(PagalNew.Com.Se).mp3',
-            'https://chandanp619.github.io/cphtmlwork/cp-player/assets/audio/Hai Rama Rangeela 320 Kbps.mp3',
-            'https://chandanp619.github.io/cphtmlwork/cp-player/assets/audio/naina na jodi.mp3',
-            'https://chandanp619.github.io/cphtmlwork/cp-player/assets/audio/Naina Jo Saanjhe Khwab Dekhte The.mp3',
-            'https://chandanp619.github.io/cphtmlwork/cp-player/assets/audio/Roke Na Ruke Naina.mp3',
-            'https://chandanp619.github.io/cphtmlwork/cp-player/assets/audio/Abhi Mujh Mein Kahin.mp3',
+            base_url+'/assets/audio/Who-Says(PagalNew.Com.Se).mp3',
+            base_url+'/assets/audio/Hai Rama Rangeela 320 Kbps.mp3',
+            base_url+'/assets/audio/naina na jodi.mp3',
+            base_url+'/assets/audio/Naina Jo Saanjhe Khwab Dekhte The.mp3',
+            base_url+'/assets/audio/Roke Na Ruke Naina.mp3',
+            base_url+'/assets/audio/Abhi Mujh Mein Kahin.mp3',
         ];
         const playlist2 = [
-            'https://chandanp619.github.io/cphtmlwork/cp-player/assets/audio/1.mp3', 
-            'https://chandanp619.github.io/cphtmlwork/cp-player/assets/audio/2.mp3', 
-            'https://chandanp619.github.io/cphtmlwork/cp-player/assets/audio/3.mp3',
+            base_url+'/assets/audio/1.mp3', 
+            base_url+'/assets/audio/2.mp3', 
+            base_url+'/assets/audio/3.mp3',
         ];
 
         const options1 = {
@@ -684,7 +696,7 @@
             nextPreviousControls: true,
             playlist: true,
             showTimeLapse: true,
-            audioInfo: false,
+            audioInfo: true,
             
         };
         const options2 = {
@@ -811,5 +823,7 @@
         const player1 = new CP_Player(playlist1, options1, 'mpplayer1', styleOptions1);
         const player2 = new CP_Player(playlist2, options2, 'mpplayer2', styleOptions2);
     </script>
+<!-- cdnjs jquery -->
+
 </body>
 </html>

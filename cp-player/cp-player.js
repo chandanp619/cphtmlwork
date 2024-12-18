@@ -282,12 +282,17 @@ class CP_Player{
     constructor(playlist, options, playerId, styleOptions={}){
         this.playlist = playlist;
         this.trackIndex = 0;
-        this.playerVolume = 0.5;
+        this.playerVolume = 10;
         this.currentTrack = this.playlist[this.trackIndex];
 
         this.music = new Audio(this.currentTrack);
         this.options = options;
         this.activeAudioTags = {};
+
+        this.amination_audioContext = null;
+        this.anmation_analyser = null;
+        this.animation_source = null;
+        this.animation_dataArray = null;
 
         if(this.options.useFontAwesome){
             this.loadFontAwesome();
@@ -307,6 +312,7 @@ class CP_Player{
         this.renderPlaylist();
 
         this.applyStyles(this.styleOptions);
+    
     }
 
     loadFontAwesome() {
@@ -380,6 +386,7 @@ class CP_Player{
         infoYear.innerHTML = "<i class=\"fa-solid fa-calendar\"></i> Unknown";
         infoDescContainer.appendChild(infoYear);
         row1.appendChild(infodiv);
+        this.createDancingBars(infodiv);
         }
         // Create the controls container
         const controlsDiv = document.createElement("div");
@@ -508,7 +515,7 @@ class CP_Player{
         playerSection.appendChild(row2);
         // add style to playerSection
         const style = document.createElement("style");
-        style.textContent = `.hide{display: none !important;}.cpplayer{display:flex;flex-direction:column;border:2px solid #900;border-radius: 8px;background-color: #bb1111;padding:16px;}.active_track{background-color: #000;color:#fff;padding:8px;}.track:last-child{border-bottom: none!important;}`;
+        style.textContent = `.hide{display: none !important;}.cpplayer{display:flex;flex-direction:column;border:2px solid #900;border-radius: 8px;background-color: #bb1111;padding:16px;}.active_track{background-color: #000;color:#fff;padding:8px;}.track:last-child{border-bottom: none!important;}.equalizer {display: flex; gap: 5px;height: 100px;width: 200px;align-items: flex-end; background: rgba(255, 255, 255, 0.05);padding: 10px;border-radius: 10px;overflow: hidden;}.bar {width: 20px; height: 100%;background: linear-gradient(180deg, #ff3d00, #ff9100);transform-origin: bottom;transform: scaleY(0.02);transition: transform 0.1s ease-out;}.audioInfo{background:linear-gradient(180deg, #999, #333)}`;
         playerSection.appendChild(style);
         return playerSection;
     }
@@ -707,43 +714,85 @@ class CP_Player{
             this.activeAudioInfoAlbum = playerSection.querySelector(".audioInfoAlbum");
             this.activeAudioInfoYear = playerSection.querySelector(".audioInfoYear");
 
+            
         }
+
+        this.bars = playerSection.querySelectorAll(".bar");
+
+        
 
     }
 
     initEventListeners() {
-        this.playButton.addEventListener("click", () => this.play());
+        this.playButton.addEventListener("click", (e)=>{ this.play(e)}, false);
         this.pauseButton.addEventListener("click", () => this.pause());
-        if(this.options.showSoundControl){
+        if (this.options.showSoundControl) {
             this.muteButton.addEventListener("click", () => this.mute());
             this.unmuteButton.addEventListener("click", () => this.unmute());
-            this.volumeControl.addEventListener('input', (e)=> this.updateVolume(e));
+            this.volumeControl.addEventListener("input", (e) => this.updateVolume(e));
         }
-       if(this.options.nextPreviousControls){
+        if (this.options.nextPreviousControls) {
             this.prevTrackButton.addEventListener("click", () => this.prevTrack());
             this.nextTrackButton.addEventListener("click", () => this.nextTrack());
-       }
-       if(this.options.playlist){
+        }
+        if (this.options.playlist) {
             this.togglePlaylistButton.addEventListener("click", () => {
                 this.playlistContainer.classList.toggle("hide");
             });
         }
-        if(this.options.seekControls){
+        if (this.options.seekControls) {
             this.seekForwardButton.addEventListener("click", () => this.seekForward());
             this.seekBackwordButton.addEventListener("click", () => this.seekBackward());
         }
         this.seekBar.parentElement.addEventListener("click", (e) => this.seek(e));
         this.music.addEventListener("timeupdate", () => this.updateSeekBar());
-        if(this.options.showTimeLapse){
+        if (this.options.showTimeLapse) {
             this.music.addEventListener("timeupdate", () => this.updateTimelapse());
         }
         this.music.addEventListener("ended", () => this.nextTrack());
+    
+        document.addEventListener('click', this.initialize_animation.bind(this));
+        
     }
 
-    play() {
+    initialize_animation(){
+        if (!this.animation_audioContext ) {
+            // Initialize AudioContext only once
+            this.animation_audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            this.animation_analyser = this.animation_audioContext.createAnalyser();
+            this.animation_analyser.fftSize = 64; // Adjust for better resolution
+            this.animation_source = this.animation_audioContext.createMediaElementSource(this.music);
+            this.animation_source.connect(this.animation_analyser);
+            this.animation_analyser.connect(this.animation_audioContext.destination);
+            this.animation_dataArray = new Uint8Array(this.animation_analyser.frequencyBinCount);
+
+          }
+    }
+    
+    startAnimateBars() {
+        this.animation_analyser.getByteFrequencyData(this.animation_dataArray);
+        if (this?.bars.length > 0) {
+            this?.bars.forEach((bar, i) => {
+                const value = this.animation_dataArray[i] || 0;
+                const barHeight = Math.max(value / 255, 0.02); // Scale between 0.02 and 1.
+                bar.style.transform = `scaleY(${barHeight})`; // Scale within equalizer bounds
+            });
+        }
+        // Pass the function reference, not the result of calling it
+        requestAnimationFrame(this.startAnimateBars.bind(this)); 
+    }
+    
+    stopAnimateBars(){
+        this.bars.forEach((bar) => (bar.style.transform = 'scaleY(0.02)')); // Reset bars on pause
+    }
+    play(e) {
+        //e.stopPropagation();
+        //e.preventDefault();
+
         this.music.play();
         this.playButton.classList.add("hide");
-        this.pauseButton.classList.remove("hide");
+        this.pauseButton.classList.remove("hide");  
+        this.startAnimateBars();
 
         this.readMetadata(this.currentTrack).then(res=>{
             this.activeAudioTags = res;
@@ -754,6 +803,7 @@ class CP_Player{
         this.music.pause();
         this.playButton.classList.remove("hide");
         this.pauseButton.classList.add("hide");
+        this.stopAnimateBars();
     }
 
     mute() {
@@ -804,17 +854,17 @@ class CP_Player{
         this.timeLapse.innerHTML = formattedTime;
     }
 
-    nextTrack() {
+    nextTrack(e) {
         this.trackIndex = (this.trackIndex + 1) % this.playlist.length;
-        this.changeTrack();
+        this.changeTrack(e);
     }
 
-    prevTrack() {
+    prevTrack(e) {
         this.trackIndex = (this.trackIndex - 1 + this.playlist.length) % this.playlist.length;
-        this.changeTrack();
+        this.changeTrack(e);
     }
 
-    changeTrack() {
+    changeTrack(e) {
         this.currentTrack = this.playlist[this.trackIndex];
         this.music.src = this.currentTrack;
         this.play();
@@ -909,6 +959,26 @@ class CP_Player{
     reader.readAsArrayBuffer(file);
 }
 
+    async getMediaStream(filePath){
+        const file = await fetch(filePath)
+                .then(res=>{
+                    return res;
+                })
+                .then(r => {
+                    return r.blob();
+                }).catch(e => {
+                    console.error(e);
+                });
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+        return reader.result;
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
+
   static parseID3Tags(arrayBuffer) {
     const dataView = new DataView(arrayBuffer);
 
@@ -998,5 +1068,21 @@ class CP_Player{
       ((dataView.getUint8(offset + 2) & 0x7f) << 7) |
       (dataView.getUint8(offset + 3) & 0x7f);
     return size;
+  }
+
+  /***** Dancing Bars ***** */
+
+  createDancingBars(container) {
+    const equalizer = document.createElement("div");
+    equalizer.classList.add("equalizer");
+    
+    this.equalizer = equalizer;
+    for (let i = 0; i < 5; i++) {
+      const bar = document.createElement("div");
+      bar.classList.add("bar");
+      bar.style.animationDelay = `${i * 0.1}s`;
+      this.equalizer.appendChild(bar);
+    }
+    container.appendChild(equalizer);
   }
 }

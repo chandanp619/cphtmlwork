@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            width:auto;
+            border: 1px solid;
+            padding: 10px;
+            border-collapse: collapse;
+            
+        }
+        tr:nth-child(even) {
+            background-color: #c9c9c9;
+        }
+        ul {
+            list-style-type: none;
+        }
+        li{
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    
+    <table id="mytbl" class="books-table">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Pages</th>
+            <th>Language</th>
+            <th>ISBN</th>
+            <th>Category</th>
+            <th>Published</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Book 1</td>
+            <td>Author 1</td>
+            <td>10.99</td>
+            <td>100</td>
+            <td>English</td>
+            <td>1234567890</td>
+            <td>Category 1</td>
+            <td>2022-01-01</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Book 2</td>
+            <td>Author 2</td>
+            <td>9.99</td>
+            <td>200</td>
+            <td>French</td>
+            <td>9876543210</td>
+            <td>Category 2</td>
+            <td>2022-02-02</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Book 3</td>
+            <td>Author 3</td>
+            <td>8.99</td>
+            <td>300</td>
+            <td>Spanish</td>
+            <td>5678901234</td>
+            <td>Category 3</td>
+            <td>2022-03-03</td>
+        </tr>
+    </table>
+<br/>
+    <table id="mytbl2">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Book 1</td>
+            <td>10.99</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Book 2</td>
+            <td>9.99</td>
+            <td>200</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Book 3</td>
+            <td>8.99</td>
+            <td>300</td>
+        </tr>
+        </table>    
+
+    <script src="./table2list.min.js"></script>
+    <script>
+        const table = document.getElementById('mytbl');
+        new Table2List(table, 768);
+        
+        const tbl2 = document.getElementById('mytbl2');
+        new Table2List(tbl2, 520);
+    </script>
+</body>
+</html>
