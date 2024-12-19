@@ -216,6 +216,7 @@
     </tr>
 </table>
 <br/>
+<div id="compactPlayer">aaaa</div>
 <br/>
 <h3 id="styleOptions"> <strong>Style Options</strong></h3>
 <br/>
@@ -867,10 +868,32 @@
                 width: '100px'
             }
         }
+
+        const options4 = {
+            useFontAwesome: true,
+            showSoundControl: true,
+            seekControls:false,
+            nextPreviousControls: false,
+            playlist: false,
+            showTimeLapse: true,
+            audioInfo: false,
+            layout: 'compact'
+        };
+        const styleOptions4 = {
+            cpplayer:{
+                margin: '20px auto',
+                background: 'linear-gradient(180deg, #dd0000, #333333)',
+                width: '80%',
+            },
+            timeline:{
+                width: '80%',
+            }
+        }
         
         const player1 = new CP_Player(playlist1, options1, 'mpplayer1', styleOptions1);
         const player2 = new CP_Player(playlist2, options2, 'mpplayer2', styleOptions2);
-        const player3 = new CP_Player(playlist1, options3, 'stickyBottomPlayer', styleOptions3)
+        const player3 = new CP_Player(playlist1, options3, 'stickyBottomPlayer', styleOptions3);
+        const player4 = new CP_Player(playlist1, options4, 'compactPlayer', styleOptions4);
 
         const tbl1 = document.getElementById('optionsTbl');
         const tbl2 = document.getElementById('styleOptionsTbl');
