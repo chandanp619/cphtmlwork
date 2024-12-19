@@ -116,7 +116,7 @@ DefaultStyleOptions =  {
         width:"60px"
     },
     PlaylistPlayIcons:{
-        fontSize: "10px"
+        fontSize: "14px"
     },
     playlistBtn:{
         backgroundColor: "#f88",
@@ -702,7 +702,7 @@ class CP_Player{
         playerSection.appendChild(row2);
         // add style to playerSection
         const style = document.createElement("style");
-        style.textContent = `.hide{display: none !important;}.cpplayer{display:flex;flex-direction:column;border:2px solid #900;border-radius: 8px;background-color: #bb1111;padding:16px;}.active_track{background-color: #000;color:#fff;padding:8px;}.track:last-child{border-bottom: none!important;}.equalizer {display: flex; gap: 5px;height: 100px;width: 200px;align-items: flex-end; background: rgba(255, 255, 255, 0.05);padding: 10px;border-radius: 10px;overflow: hidden;}.bar {width: 20px; height: 100%;background: linear-gradient(180deg, #ff3d00, #ff9100);transform-origin: bottom;transform: scaleY(0.02);transition: transform 0.1s ease-out;}.audioInfo{background:linear-gradient(180deg, #999, #333)}`;
+        style.textContent = `.hide{display: none !important;}.cpplayer{display:flex;flex-direction:column;border:2px solid #900;border-radius: 8px;background-color: #bb1111;padding:16px;}.active_track{background-color: #000;color:#fff;padding:8px;}.track:last-child{border-bottom: none!important;}.equalizer {display: flex; gap: 5px;height: 100px;width: 200px;align-items: flex-end; background: rgba(255, 255, 255, 0.05);padding: 10px;border-radius: 10px;overflow: hidden;}.bar {width: 20px; height: 100%;background: linear-gradient(180deg, #ff3d00, #ff9100);transform-origin: bottom;transform: scaleY(0.02);transition: transform 0.1s ease-out;}.audioInfo{background:linear-gradient(180deg, #999, #333)} .track{align-items: center; border-bottom: 1px solid rgb(136, 136, 136); display: flex; flex-direction: row; justify-content: space-between; padding: 5px;} .track-actions span{cursor:pointer; display:inline-block; padding:8px;}`;
         playerSection.appendChild(style);
         return playerSection;
     }
@@ -750,6 +750,13 @@ class CP_Player{
             if (styleOptions.equalizer && equalizer) {
                 Object.assign(equalizer.style, this.styleOptions.equalizer);
             }
+
+            const bars = this.playerSection.querySelectorAll(".bar");
+            bars.forEach(bar => {
+                if (styleOptions.bar) {
+                    Object.assign(bar.style, this.styleOptions.bar);
+                }
+            });
 
         if(this.options.playlist){
             // Apply styles to playlist
@@ -914,14 +921,9 @@ class CP_Player{
             this.activeAudioInfoArtist = playerSection.querySelector(".audioInfoArtist");
             this.activeAudioInfoAlbum = playerSection.querySelector(".audioInfoAlbum");
             this.activeAudioInfoYear = playerSection.querySelector(".audioInfoYear");
-
-            
         }
 
         this.bars = playerSection.querySelectorAll(".bar");
-
-        
-
     }
 
     initEventListeners() {
@@ -953,7 +955,6 @@ class CP_Player{
         this.music.addEventListener("ended", () => this.nextTrack());
     
         document.addEventListener('click', this.initialize_animation.bind(this));
-        
     }
 
     initialize_animation(){
@@ -1067,6 +1068,11 @@ class CP_Player{
     }
 
     changeTrack(e) {
+        if(this.playlist.length === 0) {
+            this.music.src = "";
+            this.music = new Audio();
+            return;
+        };
         this.currentTrack = this.playlist[this.trackIndex];
         this.music.src = this.currentTrack;
         this.play();
@@ -1109,20 +1115,35 @@ class CP_Player{
 
     renderPlaylist() {
         if(this.options.playlist && this.playlistContainer){
+            this.playlistContainer.innerHTML = "";
             this.playlist.forEach((track, index) => {
                 const div = document.createElement("div");
                 let name = track.split("/").pop();
                 div.className = "track";
-                if (index === this.trackIndex) div.classList.add("active_track");
-                div.innerHTML = `<span class="track-number">${index + 1} ${name}</span><i class="fa-solid fa-play PlaylistPlayIcon" data-playlistID="${index}"></i>`;
+                if (index === 0) div.classList.add("active_track"); this.currentTrack = this.playlist[0]; this.music.src = this.currentTrack;   
+                div.innerHTML = `<span class="track-number">${index + 1} ${name}</span><div class="track-actions"><span><i class="fa-solid fa-play PlaylistPlayIcon" data-playlistID="${index}"></i></span><span><i class="fa-solid fa-trash-can PlaylistDeleteIcon" data-playlistID="${index}"></i></span></div>`;
                 this.playlistContainer.appendChild(div);
             });
+
             this.playlistPlayButtons = this.playerSection.querySelectorAll(".PlaylistPlayIcon");
             this.playlistPlayButtons.forEach(button => {
+                button.addEventListener("click", (e) => {
+                    const playlistID = button.getAttribute("data-playlistID");
+                    this.trackIndex = playlistID;
+                    this.changeTrack(e);
+                    //this.playlistContainer.querySelector(".active_track").classList.remove("active_track");
+                    this.playlistContainer.children[playlistID].classList.add("active_track");
+                    //this.playTrack(playlistID);
+                    //this.updateActiveTrack();
+                })
+            })
+
+            this.playlistDeleteButtons = this.playerSection.querySelectorAll(".PlaylistDeleteIcon");
+            this.playlistDeleteButtons.forEach(button => {
                 button.addEventListener("click", () => {
                     const playlistID = button.getAttribute("data-playlistID");
-                    this.playTrack(playlistID);
-                    this.updateActiveTrack();
+                    this.playlist.splice(playlistID, 1);
+                    this.renderPlaylist();
                 })
             })
         }
