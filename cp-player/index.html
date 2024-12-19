@@ -18,7 +18,7 @@
             font-style: normal;
         }
         body{
-            padding:10px;
+            padding:10px 20px 100px 20px;
         }
         h2{
             font-weight: 400;
@@ -680,11 +680,12 @@
 </table>
 <br/>
 <br/>
+<div id="stickyBottomPlayer"></div>
     <script src="../table2list/table2list.min.js"></script>
-    <script src="./cp-player.min.js"></script>
+    <script src="./cp-player.js"></script>
     <script>
-        var base_url = 'https://chandanp619.github.io/cphtmlwork/cp-player';
-        //var base_url = '.';
+        // var base_url = 'https://chandanp619.github.io/cphtmlwork/cp-player';
+        var base_url = '.';
         // Usage Example
         const playlist1 = [
             base_url+'/assets/audio/Who-Says(PagalNew.Com.Se).mp3',
@@ -830,9 +831,46 @@
             }
         };
         const styleOptions2 = {};
+
+        const options3 = {
+            useFontAwesome: true,
+            showSoundControl: true,
+            seekControls:false,
+            nextPreviousControls: true,
+            playlist: true,
+            showTimeLapse: true,
+            audioInfo: false,
+            layout: 'compact'
+            
+
+        }
+        const styleOptions3 = {
+            cpplayer:{
+                color: '#f00',
+                position:'fixed',
+                padding: '0 12px',
+                bottom: '0px',
+                left: '0px',
+                width: '100%',
+                margin:'0px',
+                borderRadius: '0',
+                background: 'linear-gradient(180deg, #000000, #333333)',
+                border:'none'
+            },
+            timeline:{
+                width:'70%'
+            },
+            progressBar:{
+                backgrondColor:'#f00'
+            },
+            equalizer:{
+                width: '100px'
+            }
+        }
         
         const player1 = new CP_Player(playlist1, options1, 'mpplayer1', styleOptions1);
         const player2 = new CP_Player(playlist2, options2, 'mpplayer2', styleOptions2);
+        const player3 = new CP_Player(playlist1, options3, 'stickyBottomPlayer', styleOptions3)
 
         const tbl1 = document.getElementById('optionsTbl');
         const tbl2 = document.getElementById('styleOptionsTbl');
