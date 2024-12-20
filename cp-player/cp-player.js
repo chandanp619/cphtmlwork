@@ -131,6 +131,7 @@ DefaultStyleOptions =  {
         fontSize: "24px",
         height:"60px",
         justifyContent: "center",
+        margin: "0 10px",
         padding:"18px",
         width:"60px"
     },
