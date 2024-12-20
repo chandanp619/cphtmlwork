@@ -1183,13 +1183,7 @@ class CP_Player{
                 this.activeAudioInfoYear.innerHTML = "<i class=\"fa-solid fa-calendar\"></i> " + "Unknown";
             }
          }
-        //  else{
-        //     //this.activeAudioInfoImage?.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKYAAACUCAMAAAAu5KLjAAAATlBMVEXv8fNod4dgcIH3+Prr7e91g5GdprDk5+pUZnjY3ODz9PZldIXf4+b5+vpcbX5aa32krLWSnaeqsrp9ipe+xMuzusLR1dqKlqHKz9W4v8UC8A7gAAACeklEQVR4nO2a7ZaCIBCGFQptKEXRsvu/0bXNTexjYzEZ95z3Of306NMMDCOSJAAAAAAAAAAAAAAAAAAAAAA8QslmPrS45fG0nY012dKWqdDzKeyy8dycRPoJ8kYuqZlt9Uc0hTpA879plnkoIqJm2e1DqXQ8zXwXOFGJlIipGVr3oOkAzU/yTJMk9T/PG3BpkuxaU58zz8cyadLOai2ETo1fE8mjKRs9rJ6l9fJk0aR9cVvji2q9mtbpRHTj4cmhSbtp1+NxAxbNxm3rtN2sVLN1Xzn01uNFjEXzPNG0rmZf8Q9PxiqL5nEyNivnQnm0qe1+0Yzxynarm69mOjW5TnVuHmR4CtIxH4Npx8vkMLfK9t6TaRVqxRBPkY6rkDyXPzXf3I1PrjW9s7kQohAqG7uRc3GLcXmXd7YOKevUqap3iRNLd/4X9cSTs988HJx+k9o8dSkVuRevpHuf1tIh786fWIembB/3woRZm+Z9xofxOeZ9FZrPYnkdnz95X4OmrIunlt9NHq1F83nGh7xX13jya77K+OB5ne/smtK8juU1npe883RII1SXv1r28+iSd+ZoUv3+28GlLrFqEr3J+C3vklXzZSW69zwYPk0yvl+LhFJRN7Xdpscv44OnTrk0vWPpRjV2W0zKb1yyalJi3tXLVWgGZDy6JlEVEsvYux6JCrOMqtlbhn5dj6gZnPGomn0sAypRbE3aVOGWEaMZnvGYmtWssymxNGfFMpamtjPP+UQ66zH3YApOzvwjzY39kKZZVJOCV/Ep4ccb/DT321LMJ1920+Oyg92o2dShx5j+gPwAi5+GBQAAAAAAAAAAAAAAAAAAAGBJvgD+5DZit7mvxgAAAABJRU5ErkJggg==";
-        //     this.activeAudioInfoTitle.innerHTML = "<i class=\"fa-solid fa-music\"></i> <span>" + "Unknown" + "</span>";
-        //     this.activeAudioInfoArtist.innerHTML = "<i class=\"fa-solid fa-user\"></i> " + "Unknown";
-        //     this.activeAudioInfoAlbum.innerHTML = "<i class=\"fa-solid fa-book\"></i> " + "Unknown";
-        //     this.activeAudioInfoYear.innerHTML = "<i class=\"fa-solid fa-calendar\"></i> " + "Unknown";
-        // }
+        
     }
 
     resetAudioInfo() {
@@ -1212,25 +1206,6 @@ class CP_Player{
                 div.innerHTML = `<span class="track-number">${index + 1} ${name}</span><div class="track-actions"><span><i class="fa-solid fa-play PlaylistPlayIcon" data-playlistID="${index}"></i></span><span><i class="fa-solid fa-trash-can PlaylistDeleteIcon" data-playlistID="${index}"></i></span></div>`;
                 this.playlistContainer.appendChild(div);
             });
-
-            // this.playlistPlayButtons = this.playerSection.querySelectorAll(".PlaylistPlayIcon");
-            // this.playlistPlayButtons.forEach(button => {
-            //     button.addEventListener("click", (e) => {
-            //         const playlistID = button.getAttribute("data-playlistID");
-            //         this.trackIndex = playlistID;
-            //         this.changeTrack(e);
-            //         this.playlistContainer.children[playlistID].classList.add("active_track");
-            //     })
-            // })
-
-            // this.playlistDeleteButtons = this.playerSection.querySelectorAll(".PlaylistDeleteIcon");
-            // this.playlistDeleteButtons.forEach(button => {
-            //     button.addEventListener("click", () => {
-            //         const playlistID = button.getAttribute("data-playlistID");
-            //         this.playlist.splice(playlistID, 1);
-            //         this.renderPlaylist();
-            //     })
-            // })
         }
     }
 
