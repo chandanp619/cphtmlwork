@@ -152,6 +152,7 @@ DefaultStyleOptions =  {
     progressBar:{
         borderRadius: "5px",
         backgroundColor: "#fff",
+        cursor: "pointer",
         display: "flex",
         flexDirection: "row",
         height: "5px",
@@ -372,6 +373,9 @@ class CP_Player{
             case 'compact':
                 return this.createCompactLayout(playerId);
                 break;
+            case 'mini':
+                return this.createMiniLayout(playerId);
+                break;    
             case 'default':
             case 'undefined':    
             default:
@@ -383,7 +387,6 @@ class CP_Player{
     }
 
     createDefaultLayout(playerId){
-        console.log("Default Layout");
         const playerSection = document.createElement("player");
         playerSection.classList.add("cpplayer");
         playerSection.classList.add("default");
@@ -741,6 +744,196 @@ class CP_Player{
         return playerSection;
     }
 
+    createMiniLayout(playerId){
+        const playerSection = document.createElement("player");
+        playerSection.classList.add("cpplayer");
+        playerSection.classList.add("mini");
+        playerSection.id = playerId;
+
+        const row1 = document.createElement("div");
+        row1.className = "row1";
+
+        const row2 = document.createElement("div");
+        row2.className = "row2";
+
+        if(this.options.audioInfo){
+            const infodiv = document.createElement("div");
+            infodiv.className = "audioInfo";
+
+            const infoImage = document.createElement("img");
+            infoImage.className = "audioInfoImage";
+            infoImage.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKYAAACUCAMAAAAu5KLjAAAATlBMVEXv8fNod4dgcIH3+Prr7e91g5GdprDk5+pUZnjY3ODz9PZldIXf4+b5+vpcbX5aa32krLWSnaeqsrp9ipe+xMuzusLR1dqKlqHKz9W4v8UC8A7gAAACeklEQVR4nO2a7ZaCIBCGFQptKEXRsvu/0bXNTexjYzEZ95z3Of306NMMDCOSJAAAAAAAAAAAAAAAAAAAAAA8QslmPrS45fG0nY012dKWqdDzKeyy8dycRPoJ8kYuqZlt9Uc0hTpA879plnkoIqJm2e1DqXQ8zXwXOFGJlIipGVr3oOkAzU/yTJMk9T/PG3BpkuxaU58zz8cyadLOai2ETo1fE8mjKRs9rJ6l9fJk0aR9cVvji2q9mtbpRHTj4cmhSbtp1+NxAxbNxm3rtN2sVLN1Xzn01uNFjEXzPNG0rmZf8Q9PxiqL5nEyNivnQnm0qe1+0Yzxynarm69mOjW5TnVuHmR4CtIxH4Npx8vkMLfK9t6TaRVqxRBPkY6rkDyXPzXf3I1PrjW9s7kQohAqG7uRc3GLcXmXd7YOKevUqap3iRNLd/4X9cSTs988HJx+k9o8dSkVuRevpHuf1tIh786fWIembB/3woRZm+Z9xofxOeZ9FZrPYnkdnz95X4OmrIunlt9NHq1F83nGh7xX13jya77K+OB5ne/smtK8juU1npe883RII1SXv1r28+iSd+ZoUv3+28GlLrFqEr3J+C3vklXzZSW69zwYPk0yvl+LhFJRN7Xdpscv44OnTrk0vWPpRjV2W0zKb1yyalJi3tXLVWgGZDy6JlEVEsvYux6JCrOMqtlbhn5dj6gZnPGomn0sAypRbE3aVOGWEaMZnvGYmtWssymxNGfFMpamtjPP+UQ66zH3YApOzvwjzY39kKZZVJOCV/Ep4ccb/DT321LMJ1920+Oyg92o2dShx5j+gPwAi5+GBQAAAAAAAAAAAAAAAAAAAGBJvgD+5DZit7mvxgAAAABJRU5ErkJggg==";
+            infoImage.alt = "Album Cover";
+            infodiv.appendChild(infoImage);
+
+            const infoDescContainer = document.createElement("div");
+            infoDescContainer.className = "audioInfoDescContainer";
+            infodiv.appendChild(infoDescContainer);
+
+            const infoTitle = document.createElement("div");
+            infoTitle.className = "audioInfoTitle";
+            infoTitle.innerHTML = "<i class=\"fa-solid fa-music\"></i> Unknown";
+            infoDescContainer.appendChild(infoTitle);
+
+            const infoAlbum = document.createElement("div");
+            infoAlbum.className = "audioInfoAlbum";
+            infoAlbum.innerHTML = "<i class=\"fa-solid fa-book\"></i> Unknown";
+            infoDescContainer.appendChild(infoAlbum);
+
+            const infoArtist = document.createElement("div");
+            infoArtist.className = "audioInfoArtist";
+            infoArtist.innerHTML = "<i class=\"fa-solid fa-user\"></i> Unknown";
+            infoDescContainer.appendChild(infoArtist);
+
+            const infoYear = document.createElement("div");
+            infoYear.className = "audioInfoYear";
+            infoYear.innerHTML = "<i class=\"fa-solid fa-calendar\"></i> Unknown";
+            infoDescContainer.appendChild(infoYear);
+            row1.appendChild(infodiv);
+            this.createDancingBars(infodiv);
+        }
+        // Create the controls container
+        const controlsDiv = document.createElement("div");
+        controlsDiv.className = "controls";
+
+
+        if(this.options.nextPreviousControls){
+            // Track controls
+            
+            const prevTrack = document.createElement("div");
+            prevTrack.className = "prevTrack";
+            const prevTrackIcon = document.createElement("i");
+            prevTrackIcon.className = "fa-solid fa-backward-step";
+            prevTrack.appendChild(prevTrackIcon);
+            controlsDiv.appendChild(prevTrack);
+        }
+
+        // Play button
+        const playBtn = document.createElement("div");
+        playBtn.className = "playBtn";
+        const playIcon = document.createElement("i");
+        playIcon.className = "fa-solid fa-play";
+        playBtn.appendChild(playIcon);
+        controlsDiv.appendChild(playBtn);
+
+        // Pause button
+        const pauseBtn = document.createElement("div");
+        pauseBtn.className = "pauseBtn hide";
+        const pauseIcon = document.createElement("i");
+        pauseIcon.className = "fa-solid fa-pause";
+        pauseBtn.appendChild(pauseIcon);
+        controlsDiv.appendChild(pauseBtn);
+
+        if(this.options.nextPreviousControls){
+            const nextTrack = document.createElement("div");
+            nextTrack.className = "nextTrack";
+            const nextTrackIcon = document.createElement("i");
+            nextTrackIcon.className = "fa-solid fa-forward-step";
+            nextTrack.appendChild(nextTrackIcon);
+            controlsDiv.appendChild(nextTrack);
+            
+        }
+
+        if(this.options.showSoundControl) {
+            const volContainer = document.createElement('div');
+            volContainer.className = 'vol-container';
+
+            // Mute button
+            const muteBtn = document.createElement("div");
+            muteBtn.className = "muteBtn";
+            const muteIcon = document.createElement("i");
+            muteIcon.className = "fa-solid fa-volume-high";
+            muteBtn.appendChild(muteIcon);
+            volContainer.appendChild(muteBtn);
+
+            // Unmute button
+            const unmuteBtn = document.createElement("div");
+            unmuteBtn.className = "unmuteBtn hide";
+            const unmuteIcon = document.createElement("i");
+            unmuteIcon.className = "fa-solid fa-volume-xmark";
+            unmuteBtn.appendChild(unmuteIcon);
+            volContainer.appendChild(unmuteBtn);
+
+            // volume control
+            const volumeControl = document.createElement('input');
+            volumeControl.type = 'range';
+            volumeControl.className = 'volume-control';
+            volumeControl.value = parseInt(this.playerVolume) * 10;
+            volumeControl.max = 10;
+            volumeControl.min = 0;
+            volumeControl.step = 1;
+            volContainer.appendChild(volumeControl);
+
+            controlsDiv.appendChild(volContainer);
+
+        }
+        // Seek controls
+        const seekControlsDiv = document.createElement("div");
+        seekControlsDiv.className = "seekControls";
+        const seekBackward = document.createElement("div");
+        seekBackward.className = "seekBackward";
+        const seekBackwardIcon = document.createElement("i");
+        seekBackwardIcon.className = "fa-solid fa-share fa-flip-horizontal";
+        seekBackward.appendChild(seekBackwardIcon);
+        seekControlsDiv.appendChild(seekBackward);
+        if(this.options.seekControls){
+            const seekForward = document.createElement("div");
+            seekForward.className = "seekForward";
+            const seekForwardIcon = document.createElement("i");
+            seekForwardIcon.className = "fa-solid fa-share";
+            seekForward.appendChild(seekForwardIcon);
+            seekControlsDiv.appendChild(seekForward);
+            controlsDiv.appendChild(seekControlsDiv);
+        }
+       
+
+        const timeline = document.createElement("div");
+        timeline.className = "timeline";
+
+        if(this.options.showTimeLapse){
+            const timelapse = document.createElement("div");
+            timelapse.className = "timelapse";
+            timelapse.innerHTML = "00:00";
+            timeline.appendChild(timelapse);
+        }
+        if(this.options.playlist){
+            // Toggle playlist button
+            const togglePlaylist = document.createElement("div");
+            togglePlaylist.className = "togglePlaylist";
+            const togglePlaylistIcon = document.createElement("i");
+            togglePlaylistIcon.className = "fa-solid fa-bars";
+            togglePlaylist.appendChild(togglePlaylistIcon);
+            controlsDiv.appendChild(togglePlaylist);
+            // Create the playlist container
+            const playlistDiv = document.createElement("div");
+            playlistDiv.className = "playlist hide";
+            //playerSection.appendChild(playlistDiv);
+            row2.appendChild(playlistDiv);
+            // Create clear All button for playlist
+            const clearPlaylist = document.createElement("div");
+            clearPlaylist.className = "clearPlaylist hide";
+            clearPlaylist.innerHTML = "Clear Playlist";
+            row2.appendChild(clearPlaylist);
+        }
+
+        row1.appendChild(controlsDiv);
+        playerSection.appendChild(row1);
+        // Create the progress bar
+        const progressBarDiv = document.createElement("div");
+        progressBarDiv.className = "progressBar";
+        const seekBarDiv = document.createElement("div");
+        seekBarDiv.className = "seekBar";
+        progressBarDiv.appendChild(seekBarDiv);
+        timeline.appendChild(progressBarDiv);
+        row1.appendChild(timeline);
+        playerSection.appendChild(row2);
+        // add style to playerSection
+        const style = document.createElement("style");
+        style.textContent = `.hide{display: none !important;}.cpplayer{display:flex;flex-direction:column;border:2px solid #900;border-radius: 8px;background-color: #bb1111;padding:16px;}.active_track{background-color: #000;color:#fff;padding:8px;}.track:last-child{border-bottom: none!important;}.equalizer {display: flex; gap: 5px;height: 100px;width: 200px;align-items: flex-end; background: rgba(255, 255, 255, 0.05);padding: 10px;border-radius: 10px;overflow: hidden;}.bar {width: 20px; height: 100%;background: linear-gradient(180deg, #ff3d00, #ff9100);transform-origin: bottom;transform: scaleY(0.02);transition: transform 0.1s ease-out;}.audioInfo{background:linear-gradient(180deg, #999, #333)}`;
+        playerSection.appendChild(style);
+        return playerSection;
+    }
+
     applyStyles(styleOptions) {
         // Apply styles to the main player container
         if (styleOptions.container) {
@@ -910,7 +1103,7 @@ class CP_Player{
         }
         if(this.options.nextPreviousControls){
             const trackControls = this.playerSection.querySelector(".trackControls");
-            if (styleOptions.trackControls) {
+            if (styleOptions.trackControls && trackControls) {
                 Object.assign(trackControls.style, this.styleOptions.trackControls);
             }
             const prevTrackButton = this.playerSection.querySelector(".prevTrack");
@@ -996,7 +1189,6 @@ class CP_Player{
         document.addEventListener('load', this.initialize_animation.bind(this));
 
         this.playerSection.addEventListener("click", (e) => {
-            console.log(e.target.classList);
             if (e.target.classList.contains("PlaylistPlayIcon")) {
                 const playlistID = e.target.getAttribute("data-playlistID");
                 this.trackIndex = playlistID;
