@@ -706,23 +706,18 @@
 <br/>
 <div id="stickyBottomPlayer"></div>
     <script src="../table2list/table2list.min.js"></script>
-    <script src="./cp-player.min.js"></script>
+    <script src="./cp-player.js"></script>
     <script>
-         var base_url = 'https://chandanp619.github.io/cphtmlwork/cp-player';
-        //var base_url = '.';
+         //var base_url = 'https://chandanp619.github.io/cphtmlwork/cp-player';
+        var base_url = '.';
         // Usage Example
         const playlist1 = [
-            base_url+'/assets/audio/Who-Says(PagalNew.Com.Se).mp3',
+            base_url+'/assets/audio/Who-Says.mp3',
             base_url+'/assets/audio/Hai Rama Rangeela 320 Kbps.mp3',
-            base_url+'/assets/audio/naina na jodi.mp3',
-            base_url+'/assets/audio/Naina Jo Saanjhe Khwab Dekhte The.mp3',
-            base_url+'/assets/audio/Roke Na Ruke Naina.mp3',
-            base_url+'/assets/audio/Abhi Mujh Mein Kahin.mp3',
-        ];
-        const playlist2 = [
-            base_url+'/assets/audio/1.mp3', 
-            base_url+'/assets/audio/2.mp3', 
-            base_url+'/assets/audio/3.mp3',
+            base_url+'/assets/audio/naiaina Jo Saanjhe Khwab Dekhte The.mp3',
+            base_url+'/assets/audio/Roke_Na Ruke_Naina.mp3',
+            base_url+'/assets/audio/naina_na_jodi.mp3',
+            base_url+'/assets/audio/Abhi_Mujh_Mein_Kahin.mp3',
         ];
 
         const options1 = {
@@ -744,6 +739,26 @@
             showTimeLapse: true,
             audioInfo: false,
             
+        };
+        const options3 = {
+            useFontAwesome: true,
+            showSoundControl: true,
+            seekControls:false,
+            nextPreviousControls: true,
+            playlist: true,
+            showTimeLapse: true,
+            audioInfo: false,
+            layout: 'compact'
+        };
+        const options4 = {
+            useFontAwesome: true,
+            showSoundControl: true,
+            seekControls:false,
+            nextPreviousControls: false,
+            playlist: true,
+            showTimeLapse: true,
+            audioInfo: false,
+            layout: 'compact'
         };
         const styleOptions1 = {
             cpplayer: {
@@ -770,7 +785,7 @@
             },
             row2:{
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 width: '100%',
@@ -855,19 +870,6 @@
             }
         };
         const styleOptions2 = {};
-
-        const options3 = {
-            useFontAwesome: true,
-            showSoundControl: true,
-            seekControls:false,
-            nextPreviousControls: true,
-            playlist: true,
-            showTimeLapse: true,
-            audioInfo: false,
-            layout: 'compact'
-            
-
-        }
         const styleOptions3 = {
             cpplayer:{
                 color: '#f00',
@@ -893,18 +895,8 @@
             bar:{
                 background: 'linear-gradient(180deg, #f00, #0033dd)',
             }
-        }
-
-        const options4 = {
-            useFontAwesome: true,
-            showSoundControl: true,
-            seekControls:false,
-            nextPreviousControls: false,
-            playlist: false,
-            showTimeLapse: true,
-            audioInfo: false,
-            layout: 'compact'
         };
+
         const styleOptions4 = {
             cpplayer:{
                 margin: '20px auto',
@@ -914,10 +906,10 @@
             timeline:{
                 width: '80%',
             }
-        }
+        };
         
         const player1 = new CP_Player(playlist1, options1, 'mpplayer1', styleOptions1);
-        const player2 = new CP_Player(playlist2, options2, 'mpplayer2', styleOptions2);
+        const player2 = new CP_Player(playlist1, options2, 'mpplayer2', styleOptions2);
         const player3 = new CP_Player(playlist1, options3, 'stickyBottomPlayer', styleOptions3);
         const player4 = new CP_Player(playlist1, options4, 'compactPlayer', styleOptions4);
 

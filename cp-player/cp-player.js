@@ -18,6 +18,24 @@ DefaultStyleOptions =  {
         height:"100px",
         width:"100px"
      },
+     clearPlaylist: {
+        alignItems: "center",
+        backgroundColor: "#fff",
+        border:"1px solid #fff",
+        textAlign: "center",
+        borderRadius: "10px",
+        boxShadow: "1px 1px 1px 1px #aaa",
+        cursor: "pointer",
+        display: "flex",
+        flexGrow: "0",
+        fontWeight: "bold",
+        height: "100px",
+        justifyContent: "center",
+        marginLeft: "5px",
+        marginBottom:'10px',
+        padding: "12px",
+        width:"100px"
+     },
      controlItem :{
       alignItems: "center",
       border:"1px solid #f88",
@@ -99,6 +117,7 @@ DefaultStyleOptions =  {
         fontSize: "24px",
         height:"60px",
         justifyContent: "center",
+        margin: "0 10px",
         padding:"18px",
         width:"60px"
     },
@@ -143,6 +162,7 @@ DefaultStyleOptions =  {
         backgroundColor: "#fff",
         borderRadius: "5px",
         height: "100px",
+        marginBottom:'10px',
         overflowY: "scroll",
         padding: "10px",
         scrollbarWidth: "none",
@@ -175,7 +195,7 @@ DefaultStyleOptions =  {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        width:"75px"
+        width:"60px"
     },
     seekForwardBtn:{
         alignItems: "center",
@@ -231,6 +251,7 @@ DefaultStyleOptions =  {
     togglePlaylistBtn:{
         alignItems: "center",
         backgroundColor: "#fff",
+        margin: "0 10px",
         border:"1px solid #fff",
         borderRadius: "30px",
         boxShadow: "1px 1px 1px 1px #aaa",
@@ -248,7 +269,8 @@ DefaultStyleOptions =  {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        width:"75px"
+        margin: '0 10px',
+        width:"60px"
     },
     unmuteBtn:{
         alignItems: "center",
@@ -520,6 +542,11 @@ class CP_Player{
             playlistDiv.className = "playlist hide";
             //playerSection.appendChild(playlistDiv);
             row2.appendChild(playlistDiv);
+            // Create clear All button for playlist
+            const clearPlaylist = document.createElement("div");
+            clearPlaylist.className = "clearPlaylist hide";
+            clearPlaylist.innerHTML = "Clear Playlist";
+            row2.appendChild(clearPlaylist);
         }
 
         row1.appendChild(controlsDiv);
@@ -680,7 +707,7 @@ class CP_Player{
         }
 
         
-        if(this.options.playlist && this.options.layout!=='compact'){
+        if(this.options.playlist){
             // Toggle playlist button
             const togglePlaylist = document.createElement("div");
             togglePlaylist.className = "togglePlaylist";
@@ -693,6 +720,12 @@ class CP_Player{
             playlistDiv.className = "playlist hide";
             //playerSection.appendChild(playlistDiv);
             row2.appendChild(playlistDiv);
+
+            // Create clear All button for playlist
+            const clearPlaylist = document.createElement("div");
+            clearPlaylist.className = "clearPlaylist hide";
+            clearPlaylist.innerHTML = "Clear Playlist";
+            row2.appendChild(clearPlaylist);
         }
 
         row1.appendChild(controlsDiv);
@@ -779,7 +812,10 @@ class CP_Player{
                     }
                 });
             }
-
+            const clearPlaylist = this.playerSection.querySelector(".clearPlaylist");
+            if (styleOptions.clearPlaylist && clearPlaylist) {
+                Object.assign(clearPlaylist.style, this.styleOptions.clearPlaylist);
+            }
             
         }
 
@@ -901,6 +937,7 @@ class CP_Player{
             this.timeLapse = playerSection.querySelector(".timelapse");
         }
         if(this.options.playlist){
+            this.clearPlaylistButton = playerSection.querySelector(".clearPlaylist");
         this.playlistContainer = playerSection.querySelector(".playlist");
         this.togglePlaylistButton = playerSection.querySelector(".togglePlaylist");
         this.PlaylistPlayIcons = playerSection.querySelectorAll(".PlaylistPlayIcon");
@@ -941,6 +978,7 @@ class CP_Player{
         if (this.options.playlist && this.togglePlaylistButton) {
             this.togglePlaylistButton.addEventListener("click", () => {
                 this.playlistContainer.classList.toggle("hide");
+                this.clearPlaylistButton.classList.toggle("hide");
             });
         }
         if (this.options.seekControls) {
@@ -954,7 +992,30 @@ class CP_Player{
         }
         this.music.addEventListener("ended", () => this.nextTrack());
     
-        document.addEventListener('click', this.initialize_animation.bind(this));
+        document.addEventListener('load', this.initialize_animation.bind(this));
+
+        this.playerSection.addEventListener("click", (e) => {
+            console.log(e.target.classList);
+            if (e.target.classList.contains("PlaylistPlayIcon")) {
+                const playlistID = e.target.getAttribute("data-playlistID");
+                this.trackIndex = playlistID;
+                this.changeTrack(e);
+                this.playlistContainer.children[playlistID].classList.add("active_track");
+            }
+
+            if(e.target.classList.contains("PlaylistDeleteIcon")){
+                const playlistID = e.target.getAttribute("data-playlistID");
+                this.playlist.splice(playlistID, 1);
+                this.renderPlaylist();
+            }
+
+            if(e.target.classList.contains("clearPlaylist")){
+                this.playlist = [];
+                this.renderPlaylist();
+                this.music = new Audio();
+            }
+        });
+        
     }
 
     initialize_animation(){
@@ -1003,7 +1064,10 @@ class CP_Player{
     }
 
     pause() {
-        this.music.pause();
+        if(this.music.src !== ""){
+            this.music.pause();
+        }
+        
         this.playButton.classList.remove("hide");
         this.pauseButton.classList.add("hide");
         this.stopAnimateBars();
@@ -1095,22 +1159,46 @@ class CP_Player{
         if(this.options.audioInfo && $tags){
             if($tags.image && this.activeAudioInfoImage){
                 this.activeAudioInfoImage.src = $tags.image;
+            }else{
+                this.activeAudioInfoImage.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKYAAACUCAMAAAAu5KLjAAAATlBMVEXv8fNod4dgcIH3+Prr7e91g5GdprDk5+pUZnjY3ODz9PZldIXf4+b5+vpcbX5aa32krLWSnaeqsrp9ipe+xMuzusLR1dqKlqHKz9W4v8UC8A7gAAACeklEQVR4nO2a7ZaCIBCGFQptKEXRsvu/0bXNTexjYzEZ95z3Of306NMMDCOSJAAAAAAAAAAAAAAAAAAAAAA8QslmPrS45fG0nY012dKWqdDzKeyy8dycRPoJ8kYuqZlt9Uc0hTpA879plnkoIqJm2e1DqXQ8zXwXOFGJlIipGVr3oOkAzU/yTJMk9T/PG3BpkuxaU58zz8cyadLOai2ETo1fE8mjKRs9rJ6l9fJk0aR9cVvji2q9mtbpRHTj4cmhSbtp1+NxAxbNxm3rtN2sVLN1Xzn01uNFjEXzPNG0rmZf8Q9PxiqL5nEyNivnQnm0qe1+0Yzxynarm69mOjW5TnVuHmR4CtIxH4Npx8vkMLfK9t6TaRVqxRBPkY6rkDyXPzXf3I1PrjW9s7kQohAqG7uRc3GLcXmXd7YOKevUqap3iRNLd/4X9cSTs988HJx+k9o8dSkVuRevpHuf1tIh786fWIembB/3woRZm+Z9xofxOeZ9FZrPYnkdnz95X4OmrIunlt9NHq1F83nGh7xX13jya77K+OB5ne/smtK8juU1npe883RII1SXv1r28+iSd+ZoUv3+28GlLrFqEr3J+C3vklXzZSW69zwYPk0yvl+LhFJRN7Xdpscv44OnTrk0vWPpRjV2W0zKb1yyalJi3tXLVWgGZDy6JlEVEsvYux6JCrOMqtlbhn5dj6gZnPGomn0sAypRbE3aVOGWEaMZnvGYmtWssymxNGfFMpamtjPP+UQ66zH3YApOzvwjzY39kKZZVJOCV/Ep4ccb/DT321LMJ1920+Oyg92o2dShx5j+gPwAi5+GBQAAAAAAAAAAAAAAAAAAAGBJvgD+5DZit7mvxgAAAABJRU5ErkJggg==";
             }
             if($tags.TIT2){
-            this.activeAudioInfoTitle.innerHTML = "<i class=\"fa-solid fa-music\"></i> <span>" +  $tags.TIT2 + "</span>";
+                this.activeAudioInfoTitle.innerHTML = "<i class=\"fa-solid fa-music\"></i> <span>" +  $tags.TIT2 + "</span>";
             }else{
                 this.activeAudioInfoTitle.innerHTML = "<i class=\"fa-solid fa-music\"></i> <span>" + "Unknown" + "</span>";
             }
             if($tags.TPE1 && this.activeAudioInfoArtist){
-            this.activeAudioInfoArtist.innerHTML = "<i class=\"fa-solid fa-user\"></i> " + $tags.TPE1;
+                this.activeAudioInfoArtist.innerHTML = "<i class=\"fa-solid fa-user\"></i> " + $tags.TPE1;
+            }else{
+                this.activeAudioInfoArtist.innerHTML = "<i class=\"fa-solid fa-user\"></i> " + "Unknown";
             }
             if($tags.TALB && this.activeAudioInfoAlbum){
-            this.activeAudioInfoAlbum.innerHTML = "<i class=\"fa-solid fa-book\"></i> " + $tags.TALB;
+                this.activeAudioInfoAlbum.innerHTML = "<i class=\"fa-solid fa-book\"></i> " + $tags.TALB;
+            }else{
+                this.activeAudioInfoAlbum.innerHTML = "<i class=\"fa-solid fa-book\"></i> " + "Unknown";
             }
             if($tags.TDRC && this.activeAudioInfoYear){
-            this.activeAudioInfoYear.innerHTML = "<i class=\"fa-solid fa-calendar\"></i> " + $tags.TDRC;
+                this.activeAudioInfoYear.innerHTML = "<i class=\"fa-solid fa-calendar\"></i> " + $tags.TDRC;
+            }else{
+                this.activeAudioInfoYear.innerHTML = "<i class=\"fa-solid fa-calendar\"></i> " + "Unknown";
             }
-        }
+         }
+        //  else{
+        //     //this.activeAudioInfoImage?.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKYAAACUCAMAAAAu5KLjAAAATlBMVEXv8fNod4dgcIH3+Prr7e91g5GdprDk5+pUZnjY3ODz9PZldIXf4+b5+vpcbX5aa32krLWSnaeqsrp9ipe+xMuzusLR1dqKlqHKz9W4v8UC8A7gAAACeklEQVR4nO2a7ZaCIBCGFQptKEXRsvu/0bXNTexjYzEZ95z3Of306NMMDCOSJAAAAAAAAAAAAAAAAAAAAAA8QslmPrS45fG0nY012dKWqdDzKeyy8dycRPoJ8kYuqZlt9Uc0hTpA879plnkoIqJm2e1DqXQ8zXwXOFGJlIipGVr3oOkAzU/yTJMk9T/PG3BpkuxaU58zz8cyadLOai2ETo1fE8mjKRs9rJ6l9fJk0aR9cVvji2q9mtbpRHTj4cmhSbtp1+NxAxbNxm3rtN2sVLN1Xzn01uNFjEXzPNG0rmZf8Q9PxiqL5nEyNivnQnm0qe1+0Yzxynarm69mOjW5TnVuHmR4CtIxH4Npx8vkMLfK9t6TaRVqxRBPkY6rkDyXPzXf3I1PrjW9s7kQohAqG7uRc3GLcXmXd7YOKevUqap3iRNLd/4X9cSTs988HJx+k9o8dSkVuRevpHuf1tIh786fWIembB/3woRZm+Z9xofxOeZ9FZrPYnkdnz95X4OmrIunlt9NHq1F83nGh7xX13jya77K+OB5ne/smtK8juU1npe883RII1SXv1r28+iSd+ZoUv3+28GlLrFqEr3J+C3vklXzZSW69zwYPk0yvl+LhFJRN7Xdpscv44OnTrk0vWPpRjV2W0zKb1yyalJi3tXLVWgGZDy6JlEVEsvYux6JCrOMqtlbhn5dj6gZnPGomn0sAypRbE3aVOGWEaMZnvGYmtWssymxNGfFMpamtjPP+UQ66zH3YApOzvwjzY39kKZZVJOCV/Ep4ccb/DT321LMJ1920+Oyg92o2dShx5j+gPwAi5+GBQAAAAAAAAAAAAAAAAAAAGBJvgD+5DZit7mvxgAAAABJRU5ErkJggg==";
+        //     this.activeAudioInfoTitle.innerHTML = "<i class=\"fa-solid fa-music\"></i> <span>" + "Unknown" + "</span>";
+        //     this.activeAudioInfoArtist.innerHTML = "<i class=\"fa-solid fa-user\"></i> " + "Unknown";
+        //     this.activeAudioInfoAlbum.innerHTML = "<i class=\"fa-solid fa-book\"></i> " + "Unknown";
+        //     this.activeAudioInfoYear.innerHTML = "<i class=\"fa-solid fa-calendar\"></i> " + "Unknown";
+        // }
+    }
+
+    resetAudioInfo() {
+        this.activeAudioInfoImage.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKYAAACUCAMAAAAu5KLjAAAATlBMVEXv8fNod4dgcIH3+Prr7e91g5GdprDk5+pUZnjY3ODz9PZldIXf4+b5+vpcbX5aa32krLWSnaeqsrp9ipe+xMuzusLR1dqKlqHKz9W4v8UC8A7gAAACeklEQVR4nO2a7ZaCIBCGFQptKEXRsvu/0bXNTexjYzEZ95z3Of306NMMDCOSJAAAAAAAAAAAAAAAAAAAAAA8QslmPrS45fG0nY012dKWqdDzKeyy8dycRPoJ8kYuqZlt9Uc0hTpA879plnkoIqJm2e1DqXQ8zXwXOFGJlIipGVr3oOkAzU/yTJMk9T/PG3BpkuxaU58zz8cyadLOai2ETo1fE8mjKRs9rJ6l9fJk0aR9cVvji2q9mtbpRHTj4cmhSbtp1+NxAxbNxm3rtN2sVLN1Xzn01uNFjEXzPNG0rmZf8Q9PxiqL5nEyNivnQnm0qe1+0Yzxynarm69mOjW5TnVuHmR4CtIxH4Npx8vkMLfK9t6TaRVqxRBPkY6rkDyXPzXf3I1PrjW9s7kQohAqG7uRc3GLcXmXd7YOKevUqap3iRNLd/4X9cSTs988HJx+k9o8dSkVuRevpHuf1tIh786fWIembB/3woRZm+Z9xofxOeZ9FZrPYnkdnz95X4OmrIunlt9NHq1F83nGh7xX13jya77K+OB5ne/smtK8juU1npe883RII1SXv1r28+iSd+ZoUv3+28GlLrFqEr3J+C3vklXzZSW69zwYPk0yvl+LhFJRN7Xdpscv44OnTrk0vWPpRjV2W0zKb1yyalJi3tXLVWgGZDy6JlEVEsvYux6JCrOMqtlbhn5dj6gZnPGomn0sAypRbE3aVOGWEaMZnvGYmtWssymxNGfFMpamtjPP+UQ66zH3YApOzvwjzY39kKZZVJOCV/Ep4ccb/DT321LMJ1920+Oyg92o2dShx5j+gPwAi5+GBQAAAAAAAAAAAAAAAAAAAGBJvgD+5DZit7mvxgAAAABJRU5ErkJggg==";
+        this.activeAudioInfoTitle.innerHTML = "<i class=\"fa-solid fa-music\"></i> <span>" + "Unknown" + "</span>";
+        this.activeAudioInfoArtist.innerHTML = "<i class=\"fa-solid fa-user\"></i> " + "Unknown";
+        this.activeAudioInfoAlbum.innerHTML = "<i class=\"fa-solid fa-book\"></i> " + "Unknown";
+        this.activeAudioInfoYear.innerHTML = "<i class=\"fa-solid fa-calendar\"></i> " + "Unknown";
+        
     }
 
     renderPlaylist() {
@@ -1125,27 +1213,24 @@ class CP_Player{
                 this.playlistContainer.appendChild(div);
             });
 
-            this.playlistPlayButtons = this.playerSection.querySelectorAll(".PlaylistPlayIcon");
-            this.playlistPlayButtons.forEach(button => {
-                button.addEventListener("click", (e) => {
-                    const playlistID = button.getAttribute("data-playlistID");
-                    this.trackIndex = playlistID;
-                    this.changeTrack(e);
-                    //this.playlistContainer.querySelector(".active_track").classList.remove("active_track");
-                    this.playlistContainer.children[playlistID].classList.add("active_track");
-                    //this.playTrack(playlistID);
-                    //this.updateActiveTrack();
-                })
-            })
+            // this.playlistPlayButtons = this.playerSection.querySelectorAll(".PlaylistPlayIcon");
+            // this.playlistPlayButtons.forEach(button => {
+            //     button.addEventListener("click", (e) => {
+            //         const playlistID = button.getAttribute("data-playlistID");
+            //         this.trackIndex = playlistID;
+            //         this.changeTrack(e);
+            //         this.playlistContainer.children[playlistID].classList.add("active_track");
+            //     })
+            // })
 
-            this.playlistDeleteButtons = this.playerSection.querySelectorAll(".PlaylistDeleteIcon");
-            this.playlistDeleteButtons.forEach(button => {
-                button.addEventListener("click", () => {
-                    const playlistID = button.getAttribute("data-playlistID");
-                    this.playlist.splice(playlistID, 1);
-                    this.renderPlaylist();
-                })
-            })
+            // this.playlistDeleteButtons = this.playerSection.querySelectorAll(".PlaylistDeleteIcon");
+            // this.playlistDeleteButtons.forEach(button => {
+            //     button.addEventListener("click", () => {
+            //         const playlistID = button.getAttribute("data-playlistID");
+            //         this.playlist.splice(playlistID, 1);
+            //         this.renderPlaylist();
+            //     })
+            // })
         }
     }
 
@@ -1156,12 +1241,13 @@ class CP_Player{
     async readMetadata(filePath) {
     const file = await fetch(filePath)
                 .then(res=>{
-                    return res;
+                        return res;
                 })
                 .then(r => {
-                    return r.blob();
+                        return r.blob();
                 }).catch(e => {
                     console.error(e);
+                    return null;
                 });
     if (!file) return;
 
@@ -1169,7 +1255,11 @@ class CP_Player{
     reader.onload = () => {
       const arrayBuffer = reader.result;
       const tags = CP_Player.parseID3Tags(arrayBuffer);
-      this.renderAudioInfo(tags);
+      if(tags!=null){
+        this.renderAudioInfo(tags);
+      }else{
+        this.resetAudioInfo();
+      }
     };
     reader.readAsArrayBuffer(file);
 }
