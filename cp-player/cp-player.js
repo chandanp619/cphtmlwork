@@ -320,6 +320,10 @@ class CP_Player{
         this.animation_source = null;
         this.animation_dataArray = null;
 
+        this.validKey = false;
+
+        this.serialKeyCheck();
+
         if(this.options.useFontAwesome){
             this.loadFontAwesome();
         }
@@ -333,12 +337,13 @@ class CP_Player{
         this.playerSection = this.createPlayerDOM(playerId, this.options.layout);
         appContainer.replaceWith(this.playerSection);
 
+       
+
         this.initUI(playerId);
         this.initEventListeners();
         this.renderPlaylist();
 
         this.applyStyles(this.styleOptions);
-    
     }
 
     loadFontAwesome() {
@@ -1324,10 +1329,11 @@ class CP_Player{
         const formattedTime = `${c_minutes.toString().split(".")[0]}:${c_seconds < 10 ? "0" : ""}${c_seconds} / ${t_minutes.toString().split(".")[0]}:${t_seconds < 10 ? "0" : ""}${t_seconds}`;
         this.timeLapse.innerHTML = formattedTime;
 
-        let poweredBuStyle = window.getComputedStyle(this.playerSection.querySelector(".powered-by"));
-        console.log(poweredBuStyle.display);
-        if(c_minutes >= 1  && (poweredBuStyle.display === "none" || poweredBuStyle.visibility === "hidden")){
-            this.createPoweredBy(this.playerSection);
+        if(this.playerSection.querySelector(".powered-by")){
+            let poweredBuStyle = window.getComputedStyle(this.playerSection.querySelector(".powered-by"));
+            if(c_minutes >= 1  && (poweredBuStyle.display === "none" || poweredBuStyle.visibility === "hidden")){
+                this.createPoweredBy(this.playerSection);
+            }
         }
     }
 
@@ -1577,26 +1583,52 @@ class CP_Player{
   }
 
   createPoweredBy(section) {
-    //let poweredBuStyle = window.getComputedStyle(this.playerSection.querySelector(".powered-by"));
+    if(this.validKey == false){
+        if(!section.querySelector('#powered-by-'+ section.getAttribute('id'))){
+            const poweredBy = document.createElement("div");
+            poweredBy.classList.add("powered-by");
+            poweredBy.setAttribute('id', 'powered-by-'+ section.getAttribute('id'));
+            poweredBy.style.position = "absolute";
+            poweredBy.style.bottom = "3px";
+            poweredBy.style.fontWeight = "700";
+            poweredBy.style.color = '#ddd';
+            poweredBy.style.left = "0";
+            poweredBy.style.fontSize = "9px";
+            poweredBy.style.width = "100%";
+            poweredBy.style.textAlign = "right";
+            poweredBy.style.padding = "5px";
+            poweredBy.innerHTML = "Powered by <a style=\"text-decoration: none;color:#f00\" href=\"https://chandanp619.github.io/cphtmlwork/cp-player\" target=\"_blank\">CP-Player</a>";
+            section.appendChild(poweredBy);
+        }else{
+            section.querySelector('.powered-by').style.display = "block";
+            section.querySelector('.powered-by').style.visibility = "visible";
+        }
+    }
+  }
 
-    if(!section.querySelector('#powered-by-'+ section.getAttribute('id'))){
-        const poweredBy = document.createElement("div");
-        poweredBy.classList.add("powered-by");
-        poweredBy.setAttribute('id', 'powered-by-'+ section.getAttribute('id'));
-        poweredBy.style.position = "absolute";
-        poweredBy.style.bottom = "3px";
-        poweredBy.style.fontWeight = "700";
-        poweredBy.style.color = '#ddd';
-        poweredBy.style.left = "0";
-        poweredBy.style.fontSize = "9px";
-        poweredBy.style.width = "100%";
-        poweredBy.style.textAlign = "right";
-        poweredBy.style.padding = "5px";
-        poweredBy.innerHTML = "Powered by <a style=\"text-decoration: none;color:#f00\" href=\"https://chandanp619.github.io/cphtmlwork/cp-player\" target=\"_blank\">CP-Player</a>";
-        section.appendChild(poweredBy);
-    }else{
-        section.querySelector('.powered-by').style.display = "block";
-        section.querySelector('.powered-by').style.visibility = "visible";
+
+  serialKeyCheck() {
+    if (this.options.serialKey) {
+      if(this.options.serialKey.length < 12){
+        this.validKey = false;
+        // console.error("Invalid serial key. Please check the value in the options.");    
+      } else {
+        const serialKey = this.options.serialKey;
+        const serialKeyArray = serialKey.split('');
+        const valueFromKey = [];
+        valueFromKey.push(serialKeyArray[0]); // C
+        valueFromKey.push(serialKeyArray[12]); // h
+        valueFromKey.push(serialKeyArray[1]);  // P
+        valueFromKey.push(serialKeyArray[9]); //r
+        valueFromKey.push(serialKeyArray[8]); // a
+        valueFromKey.push(serialKeyArray[2]); //d
+        if(valueFromKey.join('') === 'ChPrad'){
+            this.validKey = true;
+        }
+      }
+    } else {
+        this.validKey = false;
+        // console.error("Invalid serial key. Please check the value in the options.");    
     }
   }
 }
