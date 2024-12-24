@@ -63,7 +63,8 @@ DefaultStyleOptions =  {
         dislay: "flex",
         flexDirection: "column",
         marginBottom:"16px",
-        padding:"16px"
+        padding:"16px",
+        position: "relative"
     },
     muteBtn:{
         alignItems: "center",
@@ -564,6 +565,9 @@ class CP_Player{
         timeline.appendChild(progressBarDiv);
         row1.appendChild(timeline);
         playerSection.appendChild(row2);
+
+        this.createPoweredBy(playerSection);
+
         // add style to playerSection
         const style = document.createElement("style");
         style.textContent = `.hide{display: none !important;}.cpplayer{display:flex;flex-direction:column;border:2px solid #900;border-radius: 8px;background-color: #bb1111;padding:16px;}.active_track{background-color: #000;color:#fff;padding:8px;}.track:last-child{border-bottom: none!important;}.equalizer {display: flex; gap: 5px;height: 100px;width: 200px;align-items: flex-end; background: rgba(255, 255, 255, 0.05);padding: 10px;border-radius: 10px;overflow: hidden;}.bar {width: 20px; height: 100%;background: linear-gradient(180deg, #ff3d00, #ff9100);transform-origin: bottom;transform: scaleY(0.02);transition: transform 0.1s ease-out;}.audioInfo{background:linear-gradient(180deg, #999, #333)}`;
@@ -670,6 +674,7 @@ class CP_Player{
 
             controlsDiv.appendChild(volContainer);
 
+            
         }
         // Seek controls
         if(this.options.seekControls){
@@ -737,6 +742,9 @@ class CP_Player{
         
         
         playerSection.appendChild(row2);
+
+        this.createPoweredBy(playerSection);
+
         // add style to playerSection
         const style = document.createElement("style");
         style.textContent = `.hide{display: none !important;}.cpplayer{display:flex;flex-direction:column;border:2px solid #900;border-radius: 8px;background-color: #bb1111;padding:16px;}.active_track{background-color: #000;color:#fff;padding:8px;}.track:last-child{border-bottom: none!important;}.equalizer {display: flex; gap: 5px;height: 100px;width: 200px;align-items: flex-end; background: rgba(255, 255, 255, 0.05);padding: 10px;border-radius: 10px;overflow: hidden;}.bar {width: 20px; height: 100%;background: linear-gradient(180deg, #ff3d00, #ff9100);transform-origin: bottom;transform: scaleY(0.02);transition: transform 0.1s ease-out;}.audioInfo{background:linear-gradient(180deg, #999, #333)} .track{align-items: center; border-bottom: 1px solid rgb(136, 136, 136); display: flex; flex-direction: row; justify-content: space-between; padding: 5px;} .track-actions span{cursor:pointer; display:inline-block; padding:8px;}`;
@@ -927,6 +935,9 @@ class CP_Player{
         timeline.appendChild(progressBarDiv);
         row1.appendChild(timeline);
         playerSection.appendChild(row2);
+
+        this.createPoweredBy(playerSection);
+
         // add style to playerSection
         const style = document.createElement("style");
         style.textContent = `.hide{display: none !important;}.cpplayer{display:flex;flex-direction:column;border:2px solid #900;border-radius: 8px;background-color: #bb1111;padding:16px;}.active_track{background-color: #000;color:#fff;padding:8px;}.track:last-child{border-bottom: none!important;}.equalizer {display: flex; gap: 5px;height: 100px;width: 200px;align-items: flex-end; background: rgba(255, 255, 255, 0.05);padding: 10px;border-radius: 10px;overflow: hidden;}.bar {width: 20px; height: 100%;background: linear-gradient(180deg, #ff3d00, #ff9100);transform-origin: bottom;transform: scaleY(0.02);transition: transform 0.1s ease-out;}.audioInfo{background:linear-gradient(180deg, #999, #333)}`;
@@ -1312,6 +1323,12 @@ class CP_Player{
         // Format the time with leading zeros for seconds
         const formattedTime = `${c_minutes.toString().split(".")[0]}:${c_seconds < 10 ? "0" : ""}${c_seconds} / ${t_minutes.toString().split(".")[0]}:${t_seconds < 10 ? "0" : ""}${t_seconds}`;
         this.timeLapse.innerHTML = formattedTime;
+
+        let poweredBuStyle = window.getComputedStyle(this.playerSection.querySelector(".powered-by"));
+        console.log(poweredBuStyle.display);
+        if(c_minutes >= 1  && (poweredBuStyle.display === "none" || poweredBuStyle.visibility === "hidden")){
+            this.createPoweredBy(this.playerSection);
+        }
     }
 
     nextTrack(e) {
@@ -1557,5 +1574,29 @@ class CP_Player{
       this.equalizer.appendChild(bar);
     }
     container.appendChild(equalizer);
+  }
+
+  createPoweredBy(section) {
+    //let poweredBuStyle = window.getComputedStyle(this.playerSection.querySelector(".powered-by"));
+
+    if(!section.querySelector('#powered-by-'+ section.getAttribute('id'))){
+        const poweredBy = document.createElement("div");
+        poweredBy.classList.add("powered-by");
+        poweredBy.setAttribute('id', 'powered-by-'+ section.getAttribute('id'));
+        poweredBy.style.position = "absolute";
+        poweredBy.style.bottom = "3px";
+        poweredBy.style.fontWeight = "700";
+        poweredBy.style.color = '#ddd';
+        poweredBy.style.left = "0";
+        poweredBy.style.fontSize = "9px";
+        poweredBy.style.width = "100%";
+        poweredBy.style.textAlign = "right";
+        poweredBy.style.padding = "5px";
+        poweredBy.innerHTML = "Powered by <a style=\"text-decoration: none;color:#f00\" href=\"https://chandanp619.github.io/cphtmlwork/cp-player\" target=\"_blank\">CP-Player</a>";
+        section.appendChild(poweredBy);
+    }else{
+        section.querySelector('.powered-by').style.display = "block";
+        section.querySelector('.powered-by').style.visibility = "visible";
+    }
   }
 }
