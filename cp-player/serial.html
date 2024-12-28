@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="key">&nbsp;</div>
+    <button onclick="generate_key()">Generate</button>
+    <script>
+        function generate_key(){
+            // generate 16 character hash string
+            let serialStr = Array.from(crypto.getRandomValues(new Uint8Array(12)))
+                 .map(b => b.toString(16).padStart(2, "0"))
+                 .join("")
+                 .slice(0, 16);
+
+                 serialArr = serialStr.split('');
+                 serialArr[0] = 'C';
+                 serialArr[12] = 'h';
+                 serialArr[1] = 'P';
+                 serialArr[9] = 'r';
+                 serialArr[8] = 'a';
+                 serialArr[2] = 'd';
+
+                 document.querySelector('.key').innerHTML = "Serial Key : " + serialArr.join('');
+        }
+                
+    </script>
+</body>
+</html>
