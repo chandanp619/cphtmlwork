@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Table2List | User Manual</title>
+    <link rel="icon" type="image/png" href="./favicon.png"/>
+    <meta name="author" content="Chandan Pradhan"/>
+    <meta name="keywords" content="html2list, html to list, table to list, javascript library, responsive table, html table, js table to list, table2list"/>
+    <meta name="description" content="A simple JavaScript library to convert HTML tables into lists"/>
+    <!-- add bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css"/>
     <style>
         table, th, td {
             width:auto;
@@ -25,80 +32,114 @@
     </style>
 </head>
 <body>
-    
-    <table id="mytbl" class="books-table">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Price</th>
-            <th>Pages</th>
-            <th>Language</th>
-            <th>ISBN</th>
-            <th>Category</th>
-            <th>Published</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Book 1</td>
-            <td>Author 1</td>
-            <td>10.99</td>
-            <td>100</td>
-            <td>English</td>
-            <td>1234567890</td>
-            <td>Category 1</td>
-            <td>2022-01-01</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Book 2</td>
-            <td>Author 2</td>
-            <td>9.99</td>
-            <td>200</td>
-            <td>French</td>
-            <td>9876543210</td>
-            <td>Category 2</td>
-            <td>2022-02-02</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Book 3</td>
-            <td>Author 3</td>
-            <td>8.99</td>
-            <td>300</td>
-            <td>Spanish</td>
-            <td>5678901234</td>
-            <td>Category 3</td>
-            <td>2022-03-03</td>
-        </tr>
-    </table>
-<br/>
-    <table id="mytbl2">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Quantity</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Book 1</td>
-            <td>10.99</td>
-            <td>100</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Book 2</td>
-            <td>9.99</td>
-            <td>200</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Book 3</td>
-            <td>8.99</td>
-            <td>300</td>
-        </tr>
-        </table>    
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="mb-4">Table2List | User Manual</h1>
+                <p>This is a simple JavaScript library that converts HTML tables into lists for better responsiveness
+                on smaller screens. Below are two example tables that will be converted into lists when the screen width
+                is less than the specified breakpoints. Resize the window to see the effect.</p>
+                <p>&nbsp;</p>
+                <p>Download the library from <a href="file:///D:/projects/cphtmlwork/table2list/table2list.min.js" target="_blank">here</a>.</p>
+            </div>
+        </div>  
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mb-4">Example Table 1</h2>
+                <p>This is an example table that will be converted into a list when the screen width is less than 768px. Resize the window to see the effect.</p>
+                <code>
+                    let table = document.getElementById('mytbl');<br/>
+                    new Table2List(table, 768);</code>
+                    <br/><br/>
+                    <table id="mytbl" class="books-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Price</th>
+                        <th>Pages</th>
+                        <th>Language</th>
+                        <th>ISBN</th>
+                        <th>Category</th>
+                        <th>Published</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Book 1</td>
+                        <td>Author 1</td>
+                        <td>10.99</td>
+                        <td>100</td>
+                        <td>English</td>
+                        <td>1234567890</td>
+                        <td>Category 1</td>
+                        <td>2022-01-01</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Book 2</td>
+                        <td>Author 2</td>
+                        <td>9.99</td>
+                        <td>200</td>
+                        <td>French</td>
+                        <td>9876543210</td>
+                        <td>Category 2</td>
+                        <td>2022-02-02</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Book 3</td>
+                        <td>Author 3</td>
+                        <td>8.99</td>
+                        <td>300</td>
+                        <td>Spanish</td>
+                        <td>5678901234</td>
+                        <td>Category 3</td>
+                        <td>2022-03-03</td>
+                    </tr>
+                    </table>
+                    <br/><br/>
+                    <h2 class="mb-4">Example Table 2</h2>
+                    <p>This is another example table that will be converted into a list when the screen width is less than 520px.</p>
+                    <code>
+                        let tbl2 = document.getElementById('mytbl2');<br/>
+                        new Table2List(tbl2, 520);</code>
+                    <p></p>
+                    <table id="mytbl2">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Book 1</td>
+                            <td>10.99</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Book 2</td>
+                            <td>9.99</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Book 3</td>
+                            <td>8.99</td>
+                            <td>300</td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center my-4">
+        <p>&copy; 2024 Chandan Pradhan. All rights reserved.</p>
+    </footer>
+
+        
 
     <script src="./table2list.min.js"></script>
     <script>
@@ -108,5 +149,6 @@
         const tbl2 = document.getElementById('mytbl2');
         new Table2List(tbl2, 520);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

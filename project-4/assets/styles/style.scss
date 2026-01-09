@@ -1,0 +1,80 @@
+@use 'colors.scss';
+@use 'mixins.scss';
+@use 'variables.scss';
+@use 'screens.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: variables.$primary-font-family;
+    background-color: colors.$primary-background-color;
+    color: colors.$primary-text-color;
+    background-image: url(../images/paper-1914901_1920.jpg);
+    line-height: 1.6;
+    padding: 20px;
+    @include mixins.responsive-font-size(16px, 20px);
+
+    a {
+        color: colors.$primary-link-color;
+        text-decoration: none;
+
+        &:hover {
+            color: colors.$secondary-link-color;
+        }
+    }
+    button{
+        @include mixins.button-styles(colors.$primary-button-color, colors.$button-text-color, colors.$button-hover-color);
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 2px solid colors.$border-color;
+
+        .navbar{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            @media (min-width: screens.$tablet) {
+                flex-direction: column;
+            }
+            .logo img {
+                height: 32px;
+                filter:hue-rotate(90deg) brightness(1.5) contrast(1.2);
+            }
+            ul {
+                list-style: none;
+                display: flex;
+
+                li {
+                    margin-right: 20px;
+
+                    a {
+                        font-weight: bold;
+                        @include mixins.responsive-font-size(14px, 18px);
+                    }
+
+                    &.active a {
+                        color: colors.$secondary-link-color;
+                    }
+                }
+            }
+        }
+    }
+
+    footer{
+        text-align: center;
+        padding: 20px 0;
+        border-top: 2px solid colors.$border-color;
+        margin-top: 20px;
+        font-size: 14px;
+        color: colors.$secondary-text-color;
+    }
+}

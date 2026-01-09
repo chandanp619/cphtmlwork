@@ -1,0 +1,31 @@
+@mixin responsive-font-size($min-size, $max-size) {
+    font-size: $min-size;
+
+    @media (min-width: 480px) {
+        font-size: calc(#{$min-size} + (#{$max-size} - #{$min-size}) * ((100vw - 400px) / (600 - 400)));
+    }
+    @media (min-width: 768px) {
+        font-size: calc(#{$min-size} + (#{$max-size} - #{$min-size}) * ((100vw - 600px) / (1200 - 600)));
+    }
+
+    @media (min-width: 1200px) {
+        font-size: $max-size;
+    }
+}
+@mixin button-styles($bg-color, $text-color, $hover-color) {
+    background-color: $bg-color;
+    color: $text-color;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}
